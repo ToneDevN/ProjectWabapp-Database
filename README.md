@@ -66,4 +66,30 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # ProjectWabapp-Database
 ## Clone and Setup Project
-1. ```git clone git@github.com:ToneDevN/ProjectWabapp-Database.git/ projectName```
+1. Clone git hub:
+   ```git clone git@github.com:ToneDevN/ProjectWabapp-Database.git/ "YourProjectName"```
+2. CD into Your Project.
+3. Install Composer Dependencies:
+   ```composer install```
+4. Install NPM Dependencies:`npm install` (Node.js must be version 18 or more. Chack node.js version`node --version`)
+    >    Install [Node.js](https://nodejs.org/en) 
+5. Create file .env:
+   ```cp .env.example .env```
+6. Generate an app encryption key:
+   ```php artisan key:generate```
+7. Create New Database in phpMyAdmin
+8. In the .env file, add database information to allow Laravel to connect to the database
+9. Migrate the Database:
+    ```php artisan migrate```
+10. Add User, Poser and admin into database:
+    ```php artisan db:seed --class=CreateUsersSeeder``` and ```php artisan db:seed --class=AdminUserSeeder```
+11. Open part your project in CMD then run ```npm install && npm run dev```
+
+### If npm run dev command error "vite" 
+   1. ```composer require laravel/breeze```
+   2. ```php artisan breeze:install```
+   3. ```npm install```
+   4. ```npm run dev```
+   5. ```npm run build```
+
+   
