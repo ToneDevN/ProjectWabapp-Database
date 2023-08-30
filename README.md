@@ -71,8 +71,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 2. CD into Your Project.
 3. Install Composer Dependencies:
    ```composer install```
-4. Install NPM Dependencies:`npm install` (Node.js must be version 18 or more. Chack node.js version`node --version`)
+4. Install NPM Dependencies:`npm install` (Node.js must be version 18 or more. Chack node.js version    `node --version`)
     >    Install [Node.js](https://nodejs.org/en) 
+
 5. Create file .env:
    ```cp .env.example .env```
 6. Generate an app encryption key:
@@ -82,7 +83,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 9. Migrate the Database:
     ```php artisan migrate```
 10. Add User, Poser and admin into database:
-    ```php artisan db:seed --class=CreateUsersSeeder``` and ```php artisan db:seed --class=AdminUserSeeder```
+    ```php artisan db:seed --class=CreateUsersSeeder``` and
+        ```php artisan db:seed --class=AdminUserSeeder```
 11. Open part your project in CMD then run ```npm install && npm run dev```
 
 ### If npm run dev command error "vite" 
