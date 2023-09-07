@@ -1,0 +1,31 @@
+.iconHome-button {
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 12px;
+    
+}
+.menu{
+    line-height: 5px; 
+}
+.underline {
+    
+    height: 5px;
+    width: 50px;
+    background-color: #4869D9;
+    border-radius: 5px;
+    margin-top: 7px;
+    
+
+    
+}
+#logo{
+    
+}
+
+body {
+    background-color: #E5F0FF;
+}
+
+#ProfileIcon{
+    margin-bottom: 10px;
+}

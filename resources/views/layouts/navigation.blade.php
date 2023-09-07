@@ -8,54 +8,53 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <style>
-    .iconHome-button {
-      background-repeat: no-repeat;
-      background-position: center;
-      padding: 12px;
-    }
-
-  </style>
+  <link href="{{ url('/css/navigation.css')}}" rel="stylesheet">
 </head>
 
 <body>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="" class="flex items-center">
-        <img src="{{url('../images/IMG_1628.PNG')}}" class="h-8 mr-3" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
-      </a>
-      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-        </svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
-            <button class="iconHome-button">
-            <i class="material-icons" style="font-size:36px;">home</i><br>
-              Home
-            </button>
-          </li>
-          <li>
-            <button class="iconHome-button">
-            <i class="material-icons" style="font-size:36px;">notifications</i><br>
-              Notifications
-            </button>
-          </li>
-          <li>
-            <button class="iconHome-button">
-            <i class="material-icons" style="font-size:36px;">person</i><br>
-              Me
-            </button>
-          </li>
+  <header>
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 ">
+      <div class="w-full flex flex-wrap items-center justify-between mx-auto py-4">
+        <a href="" class="flex-none">
+          <img id="logo" src="{{url('../images/logo.png')}}" class="mr-3" width="200" height="400" alt="Findjob Logo" />
+        </a>
+        <div class="hidden w-full md:block md:w-auto " id="navbar-default">
+          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 ">
+            <!-- Home -->
+            <li>
+              <button class="iconHome-button">
+                <i class="material-icons" style="font-size:36px;">home</i><br>
+                <p class="menu">Home
+                <div class="underline"></div>
+                </p>
+              </button>
+            </li>
+            <!-- Notifications -->
+            <li style="margin-left: 0px;">
+              <button class="iconHome-button">
+                <i class="material-icons" style="font-size:36px;">notifications</i><br>
+                <p class="menu">Notifications</p>
+              </button>
+            </li>
+            <!-- Profile -->
+            <li style="margin-left: 0px;">
+              <button class="iconHome-button">
 
-        </ul>
+                <img class="rounded-full w-9 h-9" src="{{url('../images/ProfileIcon.jpg')}}" alt="image description" id="ProfileIcon">
+                <p class="menu">Me</p>
+              </button>
+            </li>
+
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+
+  </header>
+
+
+
+
 
 
   @yield('content')
