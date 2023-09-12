@@ -2,24 +2,25 @@
     background-repeat: no-repeat;
     background-position: center;
     padding: 12px;
-    
+
 }
 .menu{
-    line-height: 5px; 
+    line-height: 5px;
 }
 .underline {
-    
+
     height: 5px;
     width: 50px;
     background-color: #4869D9;
     border-radius: 5px;
     margin-top: 7px;
-    
 
-    
+
+
+
 }
 #logo{
-    
+
 }
 
 body {
@@ -28,4 +29,29 @@ body {
 
 #ProfileIcon{
     margin-bottom: 10px;
+}
+
+#match_underline_Home{
+margin-top: 7px;
+display: inline-block;
+border-radius: 5px;
+text-decoration-line: underline;
+width: 50px;
+height: 7px;
+}
+#match_underline_Notification{
+    margin-top: 7px;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration-line: underline;
+    width: 100px;
+    height: 7px;
+}
+#match_underline_Profile{
+    margin-top: 5px;
+display: inline-block;
+border-radius: 5px;
+text-decoration-line: underline;
+width: 30px;
+height: 7px;
 }
