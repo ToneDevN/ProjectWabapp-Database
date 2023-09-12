@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\postcRUDController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,6 @@ Route::get('/', function () {
 });
 
 
-Auth::routes();
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,3 +37,4 @@ Route::get('poser/home', [HomeController::class, 'poserHome'])->name('poser.home
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_poser');
 
 Route::resource('jobinfo', postcRUDController::class);
+Route::get('createjob', [postcRUDController::class, 'create']);
