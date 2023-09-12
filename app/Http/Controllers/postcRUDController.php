@@ -16,7 +16,7 @@ class postcRUDController extends Controller
         if(Auth::check()){
         return view('jobinfo.index');
     }else{
-        redirect('login');
+        return redirect('login');
     }
     }
 
