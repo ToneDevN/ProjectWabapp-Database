@@ -1,7 +1,7 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Navigation</title>
+    <title>Navigation</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -29,10 +29,8 @@
             </button>
         </li>
 
-
           <!-- Notifications -->
           <li style="margin-left: 0px;">
-
             <button class="iconHome-button px-4 pb-7 pt-5"> <!-- Added px-4 for padding -->
               <i class="material-icons pb-1" style="font-size:36px;">notifications</i><br>
               <p class="menu pl-4 pr-4 mt-0 pb-1"> <!-- Added pl-4 and pr-4 for padding -->
@@ -54,23 +52,15 @@
 
             </button>
         </li>
-
-
                   </ul>
                 </div>
               </div>
             </nav>
-
           </header>
 
+          <div id="monica-content-root" class="monica-widget">
+        </div>
 
+</body>
+</html>
 
-
-
-
-
-
-
-
-
-  <div id="monica-content-root" class="monica-widget"></div></body></html>

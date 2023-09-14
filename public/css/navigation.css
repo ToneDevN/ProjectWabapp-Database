@@ -2,7 +2,15 @@
     background-repeat: no-repeat;
     background-position: center;
     padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Vertically center items */
+}
 
+/* Adjust padding for the profile button */
+.iconHome-button img {
+    margin-bottom: 5px; /* Adjust this value as needed for vertical alignment */
 }
 .menu{
     line-height: 5px;

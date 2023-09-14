@@ -1,26 +1,106 @@
 /* CSS code for the form */
-
 form {
-    width: 500px;
-    margin: 0 auto;
-  }
+    max-width: 700px;
+    width: 100%;
+    margin: 0px auto 0; /* Add margin-top to create distance, center horizontally */
+    padding: 0 20px; /* Add some padding for spacing inside the form */
+    background-color: white;
+    margin-top: 0px;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
-  h1 {
-    text-align: center;
-  }
+h1 {
+    color: #000;
+text-align: left;
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+padding-top: 20px;
+    }
 
-  label {
+label {
     font-weight: bold;
-  }
+}
 
-  input, select {
+/* Adjust input and select elements to have a box-sizing property */
+input, select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-  }
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #8196DE;
+    background: #FFF;
+    height: 40px;
+    flex-shrink: 0;
+}
+.submit-button-wrapper {
+    text-align: right;
+    
+    align-items: center;
+}
 
-  input[type="submit"] {
+.submit-button {
     background-color: #007bff;
     color: white;
     font-weight: bold;
-  }
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Common styles for input and select elements */
+.input-style {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #8196DE;
+    background: #FFF;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 20%; /* Adjust the width as needed */
+    text-align: center;
+}
+
+
+.job_type {
+    margin-bottom: 40px;
+}
+.distance_top{
+    height: 20px;
+}
+.distance_bottom{
+    height: 15px;
+}
+.indicate{
+    color: rgba(0, 0, 0, 0.25);
+text-align: left;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}
+.input_distance{
+    padding-top: 10px;
+    font-family: Poppins;
+}
+
+
