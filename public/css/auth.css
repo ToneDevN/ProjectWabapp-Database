@@ -1,0 +1,25 @@
+.logo{
+    width: 170px;
+    height: 60px;
+    position: fixed;
+    top: 2em;
+    left: 2em;
+}
+
+.formStyle{
+    width: 425px;
+}
+
+.inputStyle {
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    border: none;
+}
+
+.buttonStyle {
+    background-color: #4869D9;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+}

@@ -13,24 +13,32 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{url('../css/navigation.css')}}">
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+        
+        <div class="min-h-screen ">
+            <header class="bg-white">
+                <nav class="flex px-10 py-2 border-b-2">
+                    <div class="w-full flex flex-wrap items-center justify-between">
+                        <a href="" class="flex-none">
+                            <img class="logo" src="{{url('../images/logo.png')}}" alt="">
+                        </a>
+                        <div>
+                            <x-search/>
+                        </div>
+                        <div class="">
+                            <x-navigation/>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                        </div>
                     </div>
-                </header>
-            @endif
-
+                    
+                </nav>
+            </header>
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            {{ $slot }}
         </div>
     </body>
 </html>
