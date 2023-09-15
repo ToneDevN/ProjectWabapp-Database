@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\postcRUDController;
+use App\Http\Controllers\{ProfileController,
+                        postcRUDController,
+                        enrollController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,4 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 Route::resource('jobinfo', postcRUDController::class);
 Route::get('createjob', [postcRUDController::class, 'create']);
 Route::get('createjob2', [postcRUDController::class, 'create2']);
+Route::get('enroll', [enrollController::class, 'enroll']);

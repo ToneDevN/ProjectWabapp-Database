@@ -105,5 +105,31 @@ body {
     font-family: Poppins;
 }
 
+#add-question {
+    background-color: #4869D9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for the "Next" submit button */
+.submit-button {
+    background-color: #4869D9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Apply styles to the entire form container */
+.submit-button-wrapper {
+    text-align: center;
+}
+
 
 
