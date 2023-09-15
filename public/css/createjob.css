@@ -40,7 +40,6 @@ input, select {
 }
 .submit-button-wrapper {
     text-align: right;
-    
     align-items: center;
 }
 
@@ -51,6 +50,7 @@ input, select {
     width: 20%;
     text-align: center;
     padding: 10px;
+    padding-bottom: 35px;
 }
 
 /* Common styles for input and select elements */
@@ -84,7 +84,7 @@ input[type="submit"] {
     height: 20px;
 }
 .distance_bottom{
-    height: 15px;
+    height: 20px;
 }
 .indicate{
     color: rgba(0, 0, 0, 0.25);
