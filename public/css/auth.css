@@ -1,6 +1,6 @@
 .logo{
-    width: 170px;
-    height: 60px;
+    width: 250px;
+    height: auto;
     position: fixed;
     top: 2em;
     left: 2em;
@@ -16,10 +16,40 @@
     border: none;
 }
 
+.inputStyle::placeholder {
+    color: #E3E1E1;
+}
+
 .buttonStyle {
     background-color: #4869D9;
     height: 40px;
     border-radius: 5px;
     color: white;
     font-size: 20px;
+}
+
+
+hr{
+    display: block;
+    margin-top: 20px;
+    overflow: visible;
+    text-align: center;
+    font-size: 24px;
+}
+
+hr::after {
+    background: #fff;
+    content: "or";
+    
+    position: relative;
+    top: -20px;
+    left: -10px;
+}
+
+.createButton{
+    background-color: #F2F2F2;
+    width: 100%;
+    margin-top: 20px;
+    height: 40px;
+    border-radius: 5px;
 }

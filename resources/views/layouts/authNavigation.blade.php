@@ -10,7 +10,7 @@
     <header>
         <nav>
             <a href="">
-                <img src="{{url(../images/logo.png)}}" alt="FindJob">
+                <img src="{{url('../images/logo.png')}}" alt="FindJob">
             </a>
         </nav>
     </header>

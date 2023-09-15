@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class post extends Model
+class Question extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    
+    public function Jobinfos(){
+        return $this->belongsToMany(JobInfo::class);
+    }
+
+    public function responses(){
+        return $this->hasMany(responseJobInfo::class);
+    }
 }
