@@ -29,6 +29,11 @@ class postcRUDController extends Controller
     {
         return view('jobinfo.create');
     }
+    public function create2()
+    {
+        return view('jobinfo.create2');
+    }
+
 
     /**
      * Store a newly created resource in storage.

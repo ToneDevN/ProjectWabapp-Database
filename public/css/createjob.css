@@ -64,6 +64,8 @@ input, select {
     background: #FFF;
     height: 40px;
     flex-shrink: 0;
+    font-family: Poppins;
+
 }
 
 
@@ -102,5 +104,6 @@ body {
     padding-top: 10px;
     font-family: Poppins;
 }
+
 
 
