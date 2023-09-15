@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class post extends Model
+class user_has_tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    
 }

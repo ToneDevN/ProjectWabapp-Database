@@ -15,11 +15,10 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ url('../css/auth.css') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-        <a href="">
+        <a href="/">
             <img class="logo" src="{{ url('../images/logo.png') }}" alt="FindJob">
         </a>
 
