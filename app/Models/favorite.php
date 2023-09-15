@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class post extends Model
+class favorite extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function JobInfo() {
+        return $this->belongsTo(JobInfo::class);
+    }
 }
