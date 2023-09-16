@@ -11,6 +11,9 @@ class JobInfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'nameJob',
+    ];
 
     public function Poser(){
         return $this->belongsTo(Poser::class);

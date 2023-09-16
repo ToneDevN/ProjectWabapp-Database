@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\tag;
+use App\Models\{tag,
+                Poser,
+                Question,
+                Question_has_jobInfo,
+                jobinfo,};
 
 class postcRUDController extends Controller
 {
@@ -28,13 +32,41 @@ class postcRUDController extends Controller
      */
     public function create()
     {
-        return view('jobinfo.create');
+        $posersData = Poser::first(); // Assuming you want the first record, adjust as needed.
+        return view('jobinfo.create', compact('posersData'));
     }
-    public function create2()
-    {
-        $jobCategories = tag::all();
-        return view('jobinfo.create2', compact('jobCategories'));
+    public function create2(Request $request)
+{
+    // Validate and store data from the first form
+    $jobInfoData = $request->validate([
+        'job_title' => 'required',
+        'company' => 'required',
+        'workplace_type' => 'required',
+        'job_location' => 'required',
+        'job_type' => 'required',
+    ]);
+
+    $jobInfo = Jobinfo::create($jobInfoData);
+    // Validate and store data from the second form
+    $screeningQuestions = $request->input('screening_question');
+    $correctAnswers = $request->input('correct_answer');
+
+    foreach ($screeningQuestions as $key => $question) {
+        $newQuestion = [
+            'question' => $question,
+            'correct_answer' => $correctAnswers[$key],
+            'jobinfo_id' => $jobInfo->id,
+        ];
+
+        // Insert each question into the database
+        Question::create($newQuestion);
     }
+
+    // Insert job category data here using the relationship between Jobinfo and Tag.
+
+    return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+}
+
 
 
     /**
