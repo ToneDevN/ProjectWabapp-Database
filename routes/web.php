@@ -40,3 +40,14 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 Route::resource('jobinfo', postcRUDController::class);
 Route::get('createjob', [postcRUDController::class, 'create']);
+
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+// เพิ่มเส้นทางอื่น ๆ ตามความต้องการ
+
+
