@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\tag;
 
 class postcRUDController extends Controller
 {
@@ -31,7 +32,8 @@ class postcRUDController extends Controller
     }
     public function create2()
     {
-        return view('jobinfo.create2');
+        $jobCategories = tag::all();
+        return view('jobinfo.create2', compact('jobCategories'));
     }
 
 

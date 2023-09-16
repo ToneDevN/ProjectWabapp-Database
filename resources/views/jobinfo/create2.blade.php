@@ -1,30 +1,33 @@
 <x-app-layout>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const addQuestionButton = document.getElementById("add-question");
-            const screeningQuestionsContainer = document.querySelector(".screening-questions");
+       function addQuestion() {
+  const screeningQuestionsContainer = document.querySelector(".screening-questions");
 
-            addQuestionButton.addEventListener("click", function() {
-                const newQuestionContainer = document.createElement("div");
-                newQuestionContainer.className = "question-container";
+  const newQuestionContainer = document.createElement("div");
+  newQuestionContainer.className = "question-container";
 
-                const newQuestionInput = document.createElement("input");
-                newQuestionInput.type = "text";
-                newQuestionInput.name = "screening_question[]";
-                newQuestionInput.className = "input-style";
-                newQuestionInput.required = true;
+  const newQuestionInput = document.createElement("input");
+  newQuestionInput.type = "text";
+  newQuestionInput.name = "screening_question[]";
+  newQuestionInput.className = "input-style";
+  newQuestionInput.required = true;
 
-                const newAnswerSelect = document.createElement("select");
-                newAnswerSelect.name = "correct_answer[]";
-                newAnswerSelect.className = "input-style";
-                newAnswerSelect.innerHTML = `
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>`;
-                newQuestionContainer.appendChild(newQuestionInput);
-                newQuestionContainer.appendChild(newAnswerSelect);
-                screeningQuestionsContainer.appendChild(newQuestionContainer);
-            });
-        });
+  const newAnswerSelect = document.createElement("select");
+  newAnswerSelect.name = "correct_answer[]";
+  newAnswerSelect.className = "input-style";
+  newAnswerSelect.innerHTML = `
+    <option value="yes">Yes</option>
+    <option value="no">No</option>`;
+
+  const newQuestionAnswerContainer = document.createElement("div");
+  newQuestionAnswerContainer.className = "question-answer-container";
+  newQuestionAnswerContainer.appendChild(newQuestionInput);
+  newQuestionAnswerContainer.appendChild(newAnswerSelect);
+
+  newQuestionContainer.appendChild(newQuestionAnswerContainer);
+  screeningQuestionsContainer.appendChild(newQuestionContainer);
+}
+
     </script>
 
 
@@ -37,32 +40,42 @@
             <p class="indicate">*Indicates required</p>
             @csrf
             <label for="job_description">
-                <p class="input_distance">Job Description:</p>
+                <p class="input_distance">Job Description*</p>
             </label>
             <textarea name="job_description" id="job_description" class="input-style" rows="4" required></textarea>
 
             <label for="job_category">
-                <p class="input_distance">Job Category:</p>
+                <p class="input_distance">Job Category*<p>
             </label>
-            <select name="job_category" id="job_category" class="input-style">
-                @foreach ($jobCategories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-            <div class="screening-questions">
-                <div class="question-container">
-                    <label for="screening_question[]">
-                        <p class="input_distance">Screening Question:</p>
-                    </label>
-                    <input type="text" name="screening_question[]" class="input-style" required>
-                    <select name="correct_answer[]" class="input-style">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
 
-            <button type="button" id="add-question">Add Question</button>
+<!-- resources/views/create2.blade.php -->
+<div class="checkbox-container">
+    @foreach($jobCategories as $category)
+    <div class="checkbox-item">
+        <input type="checkbox" id="checkbox{{ $category->idTag }}" class="styled-checkbox" name="category[]" value="{{ $category->idTag }}" >
+        <label for="checkbox{{ $category->idTag }}" class="styled-label" >
+            <span class="checkbox-text">{{ $category->tag }}</span>
+        </label>
+    </div>
+    @endforeach
+</div>
+<div class="screening-questions">
+    <div class="question-container">
+      <label for="screening_question[]">
+        <p class="question_input">Screening Question*</p><br>
+        <p class="quesiton_set" >Question</p>
+      </label>
+      <input type="text" name="screening_question[]" class="input-style" required>
+      <div class="input_distance"></div>
+      <select name="correct_answer[]" class="input-style">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+  </div>
+  <button type="button" id="add-question" onclick="addQuestion()">Add Question</button>
+
+
             <div class="submit-button-wrapper">
                 <input type="submit" value="Post" class="submit-button">
             </div>
