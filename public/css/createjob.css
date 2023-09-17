@@ -202,3 +202,8 @@ body {
 .question-container {
     margin-bottom: 10px; /* Add margin to create space between questions */
 }
+.qualification{
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: light;
+}

@@ -65,10 +65,10 @@ class postcRUDController extends Controller
             $jobinfo->workType = $step1Data['workplace_type'];
             $jobinfo->jobType = $step1Data['job_type'];
             $jobinfo->discription = $request->input('job_description');
-            $qualification = $request->has('qualification') ? 1 : 0;
+            $qualification = $request->has('qualification') ? "1" : "0";
 
             // Update the jobinfo's qualification field
-            $jobinfo->qualification = $qualification;
+            $jobinfo->Quallification = $qualification;
 
             // Save the jobinfo instance
             $jobinfo->save();

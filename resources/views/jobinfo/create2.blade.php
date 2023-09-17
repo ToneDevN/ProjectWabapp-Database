@@ -76,10 +76,10 @@
                 </div>
             </div>
             <button type="button" id="add-question" onclick="addQuestion()">Add Question</button>
-            <p class="input_distance">Quallification</p>
+            <p class="input_distance">Quallification Setting</p>
             <label for="qualification">
                 <input type="checkbox" name="qualification" id="qualification">
-                Qualification Required
+                Filter out and send rejections to applicants who don’t meet all must-have qualifications
             </label>
             <div class="submit-button-wrapper">
                 <input type="submit" value="Post" class="submit-button">
