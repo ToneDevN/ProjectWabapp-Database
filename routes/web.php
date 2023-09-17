@@ -42,6 +42,6 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 Route::resource('jobinfo', postcRUDController::class);
 Route::get('createjob', [postcRUDController::class, 'create'])->name('create');
 Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2');
-Route::get('enroll', [enrollController::class, 'enroll']);
 
-Route::post('storetest', [postcRUDController::class, 'storetest'])->name('storetest');
+Route::post('store', [postcRUDController::class, 'store'])->name('store');
+Route::get('enroll', [enrollController::class, 'enroll']);
