@@ -11,8 +11,8 @@
         <!-- Email Address -->
         <div class="input-control mb-2">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class=" w-full inputStyle" type="email" name="email" :value="old('email')" required
-                autofocus autocomplete="username" />
+            <input id="email" class=" w-full inputStyle" type="email" name="email" :value="old('email')" required
+                autofocus autocomplete="username" placeholder="Email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -20,8 +20,8 @@
         <div class="input-control mb-2">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class=" w-full inputStyle" type="password" name="password" required
-                autocomplete="current-password" />
+            <input id="password" class=" w-full inputStyle" type="password" name="password" required
+                autocomplete="current-password" placeholder="Password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>

@@ -1,25 +1,36 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div class="formStyle">
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+            <h1 class="text-4xl mb-4">Reset Password</h1>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <!-- Email Address -->
+            <div class="input-control mb-4">
+                <label for="email">
+                    <input type="radio" name="repassword" id="email" value="email">
+                    <span>Email</span>
+                </label>
+                <input id="email" class="w-full inputStyle" type="email" name="email" :value="old('email')"
+                    required autofocus placeholder="Email" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
+            <!-- Phone Number -->
+            <div class="input-control mb-4">
+                <label for="phonenumber">
+                    <input type="radio" name="repassword" id="phonenumber" value="phonenumber">
+                    <span>Phone number</span>
+                </label>
+                <input id="phonenumber" class="w-full inputStyle" type="text" name="phonenumber"
+                    :value="old('phonenumber')" required autofocus placeholder="Phone number" />
+                <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
+            </div>
+
+            <button class="w-full buttonStyle" type="submit">Reset Password</button>
+        </form>
+    </div>
 </x-guest-layout>
