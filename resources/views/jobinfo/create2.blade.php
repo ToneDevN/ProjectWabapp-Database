@@ -76,6 +76,11 @@
                 </div>
             </div>
             <button type="button" id="add-question" onclick="addQuestion()">Add Question</button>
+            <p class="input_distance">Quallification</p>
+            <label for="qualification">
+                <input type="checkbox" name="qualification" id="qualification">
+                Qualification Required
+            </label>
             <div class="submit-button-wrapper">
                 <input type="submit" value="Post" class="submit-button">
             </div>
