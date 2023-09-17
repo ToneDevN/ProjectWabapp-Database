@@ -6,3 +6,5 @@
 @section('content')
 
 @endsection
+
+@endforeach
