@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\{ProfileController,
-                        postcRUDController,
-                        enrollController};
+use App\Http\Controllers\{
+    ProfileController,
+    postcRUDController,
+    enrollController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,13 +35,13 @@ Route::middleware('auth')->group(function () {
 
 
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('poser/home', [HomeController::class, 'poserHome'])->name('poser.home')->middleware('is_poser');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_poser');
-
 Route::resource('jobinfo', postcRUDController::class);
 Route::get('createjob', [postcRUDController::class, 'create'])->name('create');
 Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2');
 Route::get('enroll', [enrollController::class, 'enroll']);
+
+Route::post('storetest', [postcRUDController::class, 'storetest'])->name('storetest');

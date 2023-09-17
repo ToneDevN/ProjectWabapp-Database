@@ -31,41 +31,93 @@ class postcRUDController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $posersData = Poser::first(); // Assuming you want the first record, adjust as needed.
-        return view('jobinfo.create', compact('posersData'));
-    }
+{
+    $posersData = Poser::where('idUser', auth()->user()->idUser)->first();
+
+    return view('jobinfo.create', compact('posersData'));
+}
     public function create2(Request $request)
 {
-    // Validate and store data from the first form
-    $jobInfoData = $request->validate([
-        'job_title' => 'required',
-        'company' => 'required',
-        'workplace_type' => 'required',
-        'job_location' => 'required',
-        'job_type' => 'required',
-    ]);
-
-    $jobInfo = Jobinfo::create($jobInfoData);
-    // Validate and store data from the second form
-    $screeningQuestions = $request->input('screening_question');
-    $correctAnswers = $request->input('correct_answer');
-
-    foreach ($screeningQuestions as $key => $question) {
-        $newQuestion = [
-            'question' => $question,
-            'correct_answer' => $correctAnswers[$key],
-            'jobinfo_id' => $jobInfo->id,
-        ];
-
-        // Insert each question into the database
-        Question::create($newQuestion);
+    if ($request->isMethod('post')) {
+        // Store the data in the session
+        session(['step1_data' => $request->all()]);
     }
+    $jobCategories = tag::all();
 
-    // Insert job category data here using the relationship between Jobinfo and Tag.
 
-    return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+
+    return view('jobinfo.create2', compact('jobCategories'));
+
 }
+public function storetest(Request $request)
+{
+    // Retrieve data from session
+    $step1Data = session('step1_data');
+
+    // Check if session data exists
+    if ($step1Data) {
+        // Create a new jobinfo instance and save data from create1.blade.php
+        $jobinfo = new jobinfo();
+        $jobinfo->idUser = auth()->user()->idUser;
+        $jobinfo->nameJob = $step1Data['nameJob'];
+        $jobinfo->workType = $step1Data['workplace_type'];
+        $jobinfo->jobType = $step1Data['job_type'];
+        $jobinfo->discription = $request->input('job_description');
+        $jobinfo->Quallification = '1';
+
+        // Save the jobinfo instance
+        $jobinfo->save();
+
+        // Attach tags to the jobinfo if 'category' is an array
+        $categoryInput = $request->input('category');
+        if (is_array($categoryInput)) {
+            $jobinfo->tags()->attach($categoryInput);
+        }else{
+            $jobinfo->tags()->attach($categoryInput);
+        }
+
+        // Additional processing for create2.blade.php data
+        // Assuming you have relationships defined between jobinfo and other tables
+        // You can use the $jobinfo instance to relate the data
+
+        // Create and associate questions using the question_has_job_infos pivot table
+        $screeningQuestions = $request->input('screening_question');
+        $correctAnswers = $request->input('correct_answer');
+
+        foreach ($screeningQuestions as $key => $question) {
+            // Create a new Question record
+            $newQuestion = new Question();
+            $newQuestion->question = $question;
+            $newQuestion->answer = $correctAnswers[$key];
+            $newQuestion->save();
+
+            // Get the ID of the newly created question
+            $idQuestion = $newQuestion->id;
+
+            // Create a new Question_has_jobInfo record and associate it with the Question
+            $associatedQuestion = new Question_has_jobInfo();
+            $associatedQuestion->idJobInfo = auth()->user()->idUser;
+            $associatedQuestion->idQuestion = $idQuestion;
+            $associatedQuestion->save();
+
+            // Save the Question record again
+            $newQuestion->save();
+        }
+
+        // Redirect to a success page or any other page you desire
+        return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+    } else {
+        // Handle the case where session data is missing
+        return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');
+    }
+}
+
+
+
+
+
+
+
 
 
 

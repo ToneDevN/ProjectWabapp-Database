@@ -4,14 +4,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
         <link href="http://127.0.0.1:8000/css/createjob.css" rel="stylesheet">
         <form action="{{ route('create2') }}" method="post">
+
+            @csrf
             <h1>Let's create your job post</h1>
             <p class="indicate">*Indicates required</p>
-            @csrf
-            <label for="company"><p class="input_distance">Company:</p></label>
-<input type="text" name="company" id="company" class="input-style" value="{{ $posersData->userOfficeName }}" required>
 
-<label for="job_location"><p class="input_distance">Job Location:</p></label>
-<input type="text" name="job_location" id="job_location" class="input-style" value="{{ $posersData->userOfficeAddress }}" required>
+            <label for="company"><p class="input_distance">Company:</p></label>
+            <input type="text" name="company" id="company" class="input-style" value="{{ $posersData->userOfficeName }}" required>
+
+            <label for="job_location"><p class="input_distance">Job Location:</p></label>
+            <input type="text" name="job_location" id="job_location" class="input-style" value="{{ $posersData->userOfficeAddress }}" required>
 
             <label for="nameJob"><p class="input_distance">Job Title:</p></label>
             <input type="text" name="nameJob" id="namejob" class="input-style" required>
@@ -36,6 +38,7 @@
                 <input type="submit" value="Next" class="submit-button">
             </div>
             <div class="distance_bottom"></div>
+
         </form>
     </body>
 </x-app-layout>
