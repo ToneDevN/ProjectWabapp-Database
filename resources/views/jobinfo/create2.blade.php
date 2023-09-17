@@ -34,7 +34,7 @@
         <div class="distance_top"></div>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
         <link href="http://127.0.0.1:8000/css/createjob.css" rel="stylesheet">
-        <form action="{{ route('storetest') }}" method="post">
+        <form action="{{ route('store') }}" method="post">
             @csrf
 
             <h1>Let's create your job post</h1>
