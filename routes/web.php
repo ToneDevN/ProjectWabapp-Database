@@ -40,4 +40,17 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 Route::resource('jobinfo', postcRUDController::class);
 Route::get('createjob', [postcRUDController::class, 'create']);
+<<<<<<< Updated upstream
 Route::get('createjob2', [postcRUDController::class, 'create2']);
+=======
+
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
+
+>>>>>>> Stashed changes
