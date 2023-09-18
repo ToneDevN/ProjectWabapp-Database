@@ -89,7 +89,7 @@ class postcRUDController extends Controller
                 // Create a new Question record
                 $newQuestion = new Question();
                 $newQuestion->question = $question;
-                $newQuestion->answer = $correctAnswers[$key];
+                $newQuestion->answer = (int)$correctAnswers[$key];
                 $newQuestion->save();
 
                 // Get the ID of the newly created question

@@ -16,8 +16,8 @@
             newAnswerSelect.name = "correct_answer[]";
             newAnswerSelect.className = "input-style";
             newAnswerSelect.innerHTML = `
-    <option value="yes">Yes</option>
-    <option value="no">No</option>`;
+    <option value="1">Yes</option>
+    <option value="0">No</option>`;
 
             const newQuestionAnswerContainer = document.createElement("div");
             newQuestionAnswerContainer.className = "question-answer-container";
