@@ -1,4 +1,4 @@
-/* CSS code for the form */
+
 form {
     max-width: 700px;
     width: 100%;
@@ -104,6 +104,110 @@ body {
     padding-top: 10px;
     font-family: Poppins;
 }
+.question_input{
+    font-family: Poppins;
+    padding-bottom: 0px;
+}
+.question_set{
+    font-family: Poppins;
+    font-size: 7px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
 
+#add-question {
+    background-color: #4869D9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* Common styles for the label as a button-like container */
+.styled-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 2px solid #4869D9;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #4869D9;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add color transition */
+}
 
+/* Show cancel icon when checkbox is checked */
+.styled-checkbox:checked + .styled-label {
+    display: inline;
+}
 
+/* Individual checkbox styles */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+/* Hide the default checkbox input */
+.styled-checkbox {
+    display: none;
+}
+
+/* Style the checkbox text */
+.checkbox-text {
+    flex: 1;
+}
+
+/* Change button color when checked */
+.styled-checkbox:checked + .styled-label {
+    background-color: #4869D9;
+    color: white;
+}
+
+/* Change button color on hover */
+.styled-label:hover {
+    background-color: #3459a8;
+    color: white;
+}
+.checkbox-container{
+    display: inline;
+}
+/* Container for the checkboxes */
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap; /* Wrap to the next line when necessary */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Individual checkbox item */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* Optional: Set a maximum width for each checkbox item */
+.checkbox-item {
+    max-width: 200px; /* Adjust the maximum width */
+}
+
+/* Hide the default checkbox input */
+.styled-checkbox {
+    display: none;
+}
+
+.question-container {
+    margin-bottom: 10px; /* Add margin to create space between questions */
+}
+#qualification{
+    font-size: 10px;
+    font-family: Poppins;
+    font-weight: light;
+    flex:1;
+    display: inline-block;
+
+}

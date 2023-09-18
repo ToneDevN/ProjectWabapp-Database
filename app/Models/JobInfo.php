@@ -11,6 +11,9 @@ class JobInfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'nameJob',
+    ];
 
     public function Poser(){
         return $this->belongsTo(Poser::class);
@@ -21,7 +24,7 @@ class JobInfo extends Model
     }
 
     public function Questions(){
-        $this->belongsToMany(Question::class);
+        return $this->hasMany(Question::class, 'idJobinfo', 'idQuestion');
     }
 
     public function response(){
@@ -29,6 +32,6 @@ class JobInfo extends Model
     }
 
     public function Tags() {
-        $this->belongsToMany(tag::class);
+        return $this->belongsToMany(Tag::class, 'jobinfo_has_tags', 'idJobinfo', 'idTag');
     }
 }
