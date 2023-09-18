@@ -48,6 +48,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// เพิ่มเส้นทางอื่น ๆ ตามความต้องการ
 
 
