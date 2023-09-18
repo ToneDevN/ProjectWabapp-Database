@@ -79,7 +79,7 @@
             <p class="input_distance">Quallification Setting</p>
             <label for="qualification">
                 <input type="checkbox" name="qualification" id="qualification">
-                Filter out and send rejections to applicants who don’t meet all must-have qualifications
+                <p id="qualification">Filter out and send rejections to applicants who don’t meet all must-have qualifications</p>
             </label>
             <div class="submit-button-wrapper">
                 <input type="submit" value="Post" class="submit-button">

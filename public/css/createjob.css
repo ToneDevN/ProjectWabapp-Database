@@ -187,6 +187,7 @@ body {
 .checkbox-item {
     display: flex;
     align-items: center;
+    vertical-align: middle;
 }
 
 /* Optional: Set a maximum width for each checkbox item */
@@ -202,8 +203,11 @@ body {
 .question-container {
     margin-bottom: 10px; /* Add margin to create space between questions */
 }
-.qualification{
-    font-size: 12px;
+#qualification{
+    font-size: 10px;
     font-family: Poppins;
     font-weight: light;
+    flex:1;
+    display: inline-block;
+
 }
