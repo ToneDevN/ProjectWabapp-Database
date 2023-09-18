@@ -35,14 +35,4 @@ Route::middleware('auth')->group(function () {
 Route::get('poser/home', [HomeController::class, 'poserHome'])->name('poser.home')->middleware('is_poser');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_poser');
 Route::resource('jobinfo', postcRUDController::class);
-Route::get('createjob', [postcRUDController::class, 'create'])->name('create');
-Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2');
-
-Route::post('store', [postcRUDController::class, 'store'])->name('store');
-Route::get('enroll', [enrollController::class, 'enroll']);
-});
-
-
-
-require __DIR__ . '/auth.php';
-
+Route::get('createjob', [postcRUDController::class, 'create']);
