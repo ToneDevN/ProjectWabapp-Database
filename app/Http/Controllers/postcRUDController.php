@@ -81,10 +81,6 @@ class postcRUDController extends Controller
                 $jobinfo->tags()->attach($categoryInput);
             }
 
-            // Additional processing for create2.blade.php data
-            // Assuming you have relationships defined between jobinfo and other tables
-            // You can use the $jobinfo instance to relate the data
-
             // Create and associate questions using the question_has_job_infos pivot table
             $screeningQuestions = $request->input('screening_question');
             $correctAnswers = $request->input('correct_answer');
