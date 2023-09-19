@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -27,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,14 +47,12 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(array('email'=> $input['email'], 'password'=> $input['password']))) {
-            if (auth()->user()->is_poser == 1 ) {
-                return redirect()->route('poser.home');
-            }
-            if(auth()->user()->is_poser == 2){
-                return redirect()->route('admin.home');
-            }
-            else {
+            if (auth()->user()->type == 'user'){
                 return redirect()->route('home');
+            }else if (auth()->user()->type == 'poser') {
+                return redirect()->route('poser.home');
+            }else if(auth()->user()->type == 'admin'){
+                return redirect()->route('admin.home');
             }
         } else {
             return redirect()->route('login')->with('error', 'Email-address and Password are worng.');
