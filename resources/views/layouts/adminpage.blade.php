@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdminPage</title>
-  
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -19,10 +19,10 @@
             gap: 20px;
         }
         .menu {
-            background-color: #fff; 
-            color: #4869D9; 
+            background-color: #fff;
+            color: #4869D9;
             width: 250px;
-            height: 300px; 
+            height: 300px;
             padding: 20px;
             border-radius: 10px;
             margin-left: 50px;
@@ -35,30 +35,30 @@
         .menu ul li {
             margin-bottom: 10px;
         }
-        
+
         .menu ul li a {
-            
+
             text-decoration: none;
-            color: #4869D9; 
+            color: #4869D9;
             font-weight: bold;
-            display: block; 
+            display: block;
             padding: 5px;
-            transition: background-color 0.3s, color 0.3s; 
+            transition: background-color 0.3s, color 0.3s;
             border-radius: 10px;
         }
         .menu ul li a:hover {
-            background-color: #4869D9; 
-            color: #fff; 
+            background-color: #4869D9;
+            color: #fff;
         }
 
-       
+
         .menu ul li a:not(.active) {
-            color: #4869D9; 
+            color: #4869D9;
         }
         .menu ul li a .material-symbols-outlined {
     margin-right: 10px; /* ระยะห่างระหว่างไอคอนและข้อความ */
 }
- 
+
         .content {
             display: inline;
             width: 1000px;
@@ -100,7 +100,7 @@
             </li>
         </ul>
     </div>
-   
+
     <div class="content">
         Wellcome To Hell
         @yield('content')

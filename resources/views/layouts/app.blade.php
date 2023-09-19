@@ -18,7 +18,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="font-sans antialiased">
-        
+
         <div class="min-h-screen ">
             <header class="bg-white">
                 <nav class="flex px-10 py-2 border-b-2">
@@ -34,7 +34,7 @@
 
                         </div>
                     </div>
-                    
+
                 </nav>
             </header>
             <!-- Page Content -->
