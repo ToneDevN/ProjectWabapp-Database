@@ -4,11 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\tag;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phonenumber',
+        'type',
     ];
 
     /**
@@ -62,4 +65,15 @@ class User extends Authenticatable
     }
 
     protected $primaryKey = 'idUser';
+
+    /**
+     * Summary of type
+     * @param string $value
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function type(): Attribute{
+        return new Attribute(
+            get: fn ($value) => ["user", "poser", "admin"][$value],
+        );
+    }
 }
