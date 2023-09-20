@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('image')->nullable();
             $table->string('phonenumber');
-            $table->string('type',1)->default('0');
+            $table->boolean('type')->default(false); // type User => 0, Poser => 1, Admin => 2
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
