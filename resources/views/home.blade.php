@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 
 
 
@@ -19,10 +17,10 @@
 
                     {{ __('You are logged in!') }}
 
-                    You are namal user.
+                    You are normal user.
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+</x-app-layout>
