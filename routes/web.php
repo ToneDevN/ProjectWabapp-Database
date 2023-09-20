@@ -1,6 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{
+    ProfileController,
+    postcRUDController,
+    enrollController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
