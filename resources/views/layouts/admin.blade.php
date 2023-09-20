@@ -16,28 +16,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('../css/navigation.css') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url('/public/css/test.css') }}">
 </head>
 
 <body class="font-sans antialiased">
 
-    <div class="min-h-screen ">
-        <header class="bg-white">
-            <nav class="flex px-10 py-2 border-b-2">
-                <div class="w-full flex flex-wrap items-center justify-between">
-                    <a href="" class="flex-none">
-                        <img class="logo" src="{{ url('../images/logo.png') }}" alt="5" width="150">
-                    </a>
-                    <div class="">
-                        <x-adminnav/>
-                    </div>
-                </div>
 
-            </nav>
-        </header>
-        <!-- Page Content -->
-        @yield('content')
-    </div>
 </body>
 
 </html>
