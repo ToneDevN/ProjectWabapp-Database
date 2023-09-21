@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Prompt&display=swap');
+
+
+*{
+    font-family: 'Poppins' !important;
+}
 body{
     background-color:  #E5F0FF;
 }
