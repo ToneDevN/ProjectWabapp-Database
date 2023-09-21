@@ -20,11 +20,9 @@ return new class extends Migration
             $table->string('valifiyStatus',1)->default('0');
             $table->timestamps();
             $table->softDeletes();
-
             $table->primary('idUser');
             $table->foreign('idUser')->references('idUser')->on('users');
 
-           
         });
     }
 
