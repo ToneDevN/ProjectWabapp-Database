@@ -7,10 +7,6 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,7 +20,7 @@
                 <nav class="flex px-10 py-2 border-b-2">
                     <div class="w-full flex flex-wrap items-center justify-between">
                         <a href="" class="flex-none">
-                            <img class="logo" src="{{url('../images/logo.png')}}" alt="">
+                            <img class="logo" src="{{url('../images/logo.png')}}">
                         </a>
                         <div>
                             <x-search/>
