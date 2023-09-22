@@ -15,10 +15,24 @@
 
 .colors-blue{
     background-color: #4869D9;
+}
 
+.colors-blue:hover{
+    background-color: #3B57B3;
 }
 
 .category:hover{
     background-color: #3B57B3;
-    scale: 105%;
+}
+
+.posts:hover{
+    background-color: #3B57B3;
+}
+
+.borders-blue{
+    border-color: #4869D9;
+}
+
+.bt-save:hover{
+    background-color: #3B57B3;
 }

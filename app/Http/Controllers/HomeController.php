@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobInfo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,21 @@ class HomeController extends Controller
     public function index()
     {
         return view('main.index');
+    }
+
+    public function detail(){
+        $job = JobInfo::where('idJobInfo','=',2)->get();
+        $job=$job[0];
+        $name = $job->nameJob;
+        $workType = $job->workType;
+        $jobType = $job->jobType;
+        $description = $job->description;
+
+
+
+
+        return view('main.detail', ['name'=>$name, 'workType'=>$workType, 'jobType'=>$jobType, 'description'=>$description]);
+    
     }
     
     /**

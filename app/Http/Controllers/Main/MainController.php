@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobInfo;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -14,7 +15,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        
+      
         return view('main.index');
     }
 
