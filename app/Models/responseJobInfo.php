@@ -22,4 +22,8 @@ class responseJobInfo extends Model
     public function Question(){
         return $this->belongsTo(Question::class);
     }
+
+    public function response_has_question(){
+        return $this->hasMany(response_has_question::class);
+    }
 }
