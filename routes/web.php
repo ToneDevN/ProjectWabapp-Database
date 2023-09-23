@@ -41,6 +41,12 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('createjob', [postcRUDController::class, 'create'])->name('create'); //fetch and input worktype
     Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2'); // fetch and create question
     Route::post('store', [postcRUDController::class, 'store'])->name('store'); // insert on to DB
+
+    Route::get('enroll', [enrollController::class, 'enroll']);
+    Route::post('ansQuestion',[enrollController::class, 'ansQuestion'])->name('ansQuestion'); //this route is for answer question and store data like email tel. resume
+    Route::post('summarizeData',[enrollController::class, 'sumarizeData'])->name('summarize');
+    Route::post('submit-response', [enrollController::class, 'submitResponse'])->name('submit_summary');//this route is for answer question and store data like email tel. resume
+
 });
 Route::middleware(['auth', 'user-access:poser'])->group(function () {
     Route::get('/poser', [HomeController::class, 'poserHome'])->name('poser.home');

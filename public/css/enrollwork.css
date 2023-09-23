@@ -1,31 +1,30 @@
-/* enrollwork.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
 
-/* Style the page header */
-.page-header {
-    text-align: center;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: bolder;
     margin-bottom: 20px;
 }
 
-/* Style form container */
-.form-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Style form labels */
-.form-label {
-    display: block;
+label {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-/* Style form inputs */
-.form-input {
+.input-field {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -34,23 +33,19 @@
     font-size: 16px;
 }
 
-/* Style file input */
-.form-file-input {
+.file-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
 }
 
-/* Style the Next button */
-.next-button {
+.submit-button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color:#4869D9;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -59,18 +54,83 @@
     cursor: pointer;
 }
 
-.next-button:hover {
-    background-color: #0056b3;
+.submit-button:hover {
+    background-color: #4869D9;
+}
+.distance{
+    height: 20px;
+}
+.distance_top{
+    height: 20px;
+}
+.distance_bottom{
+    height: 20px;
+}
+/* Style user info container */
+.user-info {
+    display: flex;
+    align-items: center; /* Vertically center the image and name */
 }
 
-/* Style error messages */
-.error-message {
-    color: #ff0000;
-    margin-top: 5px;
+/* Style profile image container */
+.profile-image-container {
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    overflow: hidden;
+    border-radius: 50%; /* Makes the container circular */
+    margin-right: 20px; /* Add some space to the right of the image */
 }
 
-/* Style success messages */
-.success-message {
-    color: #00cc00;
-    margin-top: 5px;
+/* Style profile image */
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
+
+/* Style user name */
+.user-name {
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold;
+    white-space: nowrap;
+}
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+}
+
+.question{
+    font-size: 20px;
+}
+.question-summary{
+    font-size: 15px;
+}
+.form-control {
+    border: none;
+
+}
+.form-group {
+    margin-left: 20px;
+    font-weight: bold;
+}
+.form-group-question{
+    font-weight: bold !important;
+    margin-left: 20px;
+}
+.question-container-summy{
+    margin-left: 20px;
+}
+
+.profile-image-container-summary {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    overflow: hidden;
+    border-radius: 50%; /* Makes the container circular */
+    margin: 20px;
+}
+.h1summary {
+    font-size: 25px;
+}
+

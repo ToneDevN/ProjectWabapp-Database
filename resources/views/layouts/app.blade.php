@@ -18,13 +18,13 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="font-sans antialiased">
-        
+
         <div class="min-h-screen ">
             <header class="bg-white">
                 <nav class="flex px-10 py-2 border-b-2">
                     <div class="w-full flex flex-wrap items-center justify-between">
                         <a href="" class="flex-none">
-                            <img class="logo" src="{{url('../images/logo.png')}}" alt="">
+                            <img class="logo" src="{{url('../images/logo.png')}}" alt="" width="150px">
                         </a>
                         <div>
                             <x-search/>
@@ -34,7 +34,7 @@
 
                         </div>
                     </div>
-                    
+
                 </nav>
             </header>
             <!-- Page Content -->
