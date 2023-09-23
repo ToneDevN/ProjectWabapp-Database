@@ -18,7 +18,7 @@
             <!-- Profile Form -->
             <form action="{{ route('ansQuestion') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <label for="job_id">Select a Job:</label>
+                <label for="job_id">Select a Job: Dont forgot to Delete it when Main Page is complete !!!!!!!!!!I make it for check jobId Is practical??</label>
 <select name="job_id" id="job_id" class="input-field" required>
     <option value="">Select a idJob</option>
     @foreach ($jobInfoList as $jobId)
