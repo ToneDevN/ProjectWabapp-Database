@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Prompt&display=swap');
+
+*{
+    font-family: 'Poppins' ;
+}
+
 .iconHome-button {
     background-repeat: no-repeat;
     background-position: center;
@@ -26,6 +32,18 @@
 
 
 }
+
+
+.logo{
+    width: 150px;
+    height: auto;
+}
+
+body {
+    background-color: #E5F0FF;
+}
+
+
 #icon{
     width: 36px;
     height: 36px;

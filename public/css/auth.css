@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Prompt&display=swap');
+
+
+*{
+    font-family: 'Poppins' !important;
+}
+
 .logo{
-    width: 250px;
+    width: 150px;
     height: auto;
     position: fixed;
     top: 2em;

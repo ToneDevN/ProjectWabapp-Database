@@ -10,10 +10,10 @@
             <p class="indicate">*Indicates required</p>
 
             <label for="company"><p class="input_distance">Company:</p></label>
-            <input type="text" name="company" id="company" class="input-style" value="{{ $posersData->userOfficeName }}" required>
+            <input type="text" name="company" id="company" class="input-style" value="{{ $posersData->userOfficeName }}" required disabled>
 
             <label for="job_location"><p class="input_distance">Job Location:</p></label>
-            <input type="text" name="job_location" id="job_location" class="input-style" value="{{ $posersData->userOfficeAddress }}" required>
+            <input type="text" name="job_location" id="job_location" class="input-style" value="{{ $posersData->userOfficeAddress }}" required disabled>
 
             <label for="nameJob"><p class="input_distance">Job Title:</p></label>
             <input type="text" name="nameJob" id="namejob" class="input-style" required>
