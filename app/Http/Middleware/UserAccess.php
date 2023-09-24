@@ -21,6 +21,6 @@ class UserAccess
         }
 
         return redirect('home')->with('type','You is User');
-       
+
     }
 }
