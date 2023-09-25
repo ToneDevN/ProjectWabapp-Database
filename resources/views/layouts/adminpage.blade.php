@@ -62,7 +62,6 @@
 
             <div class="menu" style="width:55%
             ">
-
                 @yield('content')
             </div>
 

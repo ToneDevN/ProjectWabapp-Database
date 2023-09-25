@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{
-    User,Poser,JobInfo
+    User,Poser,JobInfo,tag
 };
 
 class HomeController extends Controller
@@ -51,6 +51,56 @@ class HomeController extends Controller
         return view('adminHome',compact('countuser','countpost','countinfo'));
     }
     public function admint($text) {
+        if($text == 'category'){
+                $tags = Tag::all();
+                return view('admincategory', compact('tags'));
+        }
         return view('admin'.$text,compact('text'));
     }
+
+
+
+    public function storeTag(Request $request)
+{
+    $validatedData = $request->validate([
+        'tag' => 'required|unique:tags|max:255',
+    ]);
+
+    Tag::create([
+        'tag' => $validatedData['tag'],
+    ]);
+    $tags = Tag::all();
+    return view('admincategory', compact('tags'));
+}public function editTagForm($idTag)
+{
+
+    $tag = Tag::findOrFail($idTag);
+    return view('admineditTag', compact('tag'));
+}
+
+public function updateTag(Request $request, $idTag)
+{
+    $validatedData = $request->validate([
+        'tag' => 'required|unique:tags|max:255',
+    ]);
+
+    $tag = Tag::findOrFail($idTag);
+    $tag->tag = $validatedData['tag'];
+    $tag->save();
+
+    $tags = Tag::all();
+    return view('admincategory', compact('tags'));
+}
+public function addTagForm(){
+    return view('addminaddTag');
+}
+
+public function deleteTag($idTag)
+{
+    $tag = Tag::findOrFail($idTag);
+    $tag->delete();
+
+    $tags = Tag::all();
+    return view('admincategory', compact('tags'));
+}
 }

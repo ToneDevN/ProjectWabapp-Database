@@ -10,6 +10,10 @@ class tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $primaryKey = 'idTag';
+    protected $fillable = [
+        'tag',
+    ];
 
     public function Users(){
         return $this->belongsToMany(User::class);
