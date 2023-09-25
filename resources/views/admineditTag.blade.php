@@ -10,18 +10,24 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Tag</h1>
+    <h1 class="mb-5 display-4">Edit Tag</h1>
 
     <form action="{{ route('admin.category.updateTag', $tag->idTag) }}" method="POST">
 
         @csrf
 
-        <div class="form-group">
-            <label for="tag">Tag Name:</label>
+        <div class="form-group mb-4">
+            <label for="tag" class="mb-2">Tag Name:</label>
             <input type="text" name="tag" id="tag" class="form-control" value="{{ $tag->tag }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Tag</button>
+        <div class="form-group mb-5">
+            <button type="submit" class="btn btn-primary" style="background-color: #4869D9; color: white;">Update Tag</button>
+        </div>
     </form>
 </div>
+
+
+
+
 @endsection

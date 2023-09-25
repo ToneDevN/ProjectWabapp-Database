@@ -18,17 +18,14 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }.form-control-input{
+        border-radius: 10px;
+background: #dbdbdb;
+border: 0px;
     }
-    /* Change button appearance on hover */
-.btn-danger:hover {
-    background-color: white;
-    color: red;
-    border: 1px solid red;
-}
-
     </style>
 
-<h1>Category Name</h1>
+<h1 class="mb-1">Category</h1>
 
 <table class="table">
     <thead>
@@ -55,8 +52,21 @@
     </tbody>
 </table>
 
-<div class="text-center">
-    <a href="{{ route('admin.category.addTagForm') }}" class="btn btn-success">Add Tag</a>
+<div class="container">
+    <form action="{{ route('admin.category.storeTag') }}" method="POST">
+        @csrf
+        <div class="d-flex align-items-start">
+            <div class="form-group mb-2" style="flex: 1;">
+                <input type="text" name="tag" id="tag" class="form-control-input" style="width: 99%;" required placeholder="Add category">
+            </div>
+            <button type="submit" class="btn btn-success-input" style="background-color: #4869D9; color: white;">Add Tag</button>
+        </div>
+    </form>
 </div>
+
+
+
+
+
 
 @endsection

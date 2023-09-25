@@ -54,9 +54,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::get('admin/{text}', [HomeController::class, 'admint'])->name('admin.user');
 
-// Go to tag page
-Route::get('/admin/category/edit/{id}',[HomeController::class, 'editTag'])->name('admin.editTag');
-
 // Edit Tag Form
 Route::get('/admin/category/editTag/{idTag}', [HomeController::class, 'editTagForm'])->name('admin.category.editTagForm');
 Route::post('/admin/category/updateTag/{idTag}', [HomeController::class, 'updateTag'])->name('admin.category.updateTag');
@@ -65,7 +62,6 @@ Route::post('/admin/category/updateTag/{idTag}', [HomeController::class, 'update
 Route::delete('/admin/category/deleteTag/{idTag}', [HomeController::class, 'deleteTag'])->name('admin.category.deleteTag');
 
 // Add Tag Form
-Route::get('/admin/category/addTag', [HomeController::class, 'addTagForm'])->name('admin.category.addTagForm');
 Route::post('/admin/category/storeTag', [HomeController::class, 'storeTag'])->name('admin.category.storeTag');
 
 });
