@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('jobinfo', postcRUDController::class);
-    Route::get('enroll', [enrollController::class, 'enroll']);
     //Test route check how create job
     Route::get('createjob', [postcRUDController::class, 'create'])->name('create'); //fetch and input worktype
     Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2'); // fetch and create question
