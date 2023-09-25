@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Prompt&display=swap');
 
-
 *{
     font-family: 'Poppins' ;
 }
@@ -33,6 +32,8 @@
 
 
 }
+
+
 .logo{
     width: 150px;
     height: auto;
@@ -41,6 +42,7 @@
 body {
     background-color: #E5F0FF;
 }
+
 
 #icon{
     width: 36px;
@@ -102,4 +104,75 @@ height: 7px;
     background-color: #F5F5F5;
     border: none;
     border-radius: 7px;
+}
+body {
+    background-color: #e5f0ff;
+}
+
+.block {
+    display: flex;
+    gap: 20px;
+}
+
+.menu {
+    background-color: #fff;
+    color: #4869D9;
+    width: 250px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin-bottom: 10px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #4869D9;
+    font-weight: bold;
+    display: block;
+    padding: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+.menu ul li a:hover {
+    background-color: #4869D9;
+    color: #fff;
+}
+
+
+.menu ul li a:not(.active) {
+    color: #4869D9;
+}
+
+
+
+.menu ul li a .material-symbols-outlined {
+    margin-right: 10px;
+    /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+.content {
+    display: inline;
+    width: 1000px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #fff;
+}
+a p {
+    margin: 0.55em;
+}
+a span{
+    float:left;
 }
