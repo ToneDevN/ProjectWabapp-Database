@@ -1,15 +1,4 @@
-<<<<<<< HEAD
 @extends('layouts.adminpage')
-=======
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
->>>>>>> 24d88ca3754c561c498342bfbc97e5e7ecb45482
 
 @section('content')
 <style>
