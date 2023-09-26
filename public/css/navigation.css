@@ -21,7 +21,7 @@
 .menu{
     line-height: 5px;
 }
-.underline {
+.underlines {
 
     height: 5px;
     width: 50px;
@@ -105,6 +105,7 @@ height: 7px;
     border: none;
     border-radius: 7px;
 }
+<<<<<<< HEAD
 body {
     background-color: #e5f0ff;
 }
@@ -176,3 +177,7 @@ a p {
 a span{
     float:left;
 }
+=======
+
+
+>>>>>>> 24d88ca3754c561c498342bfbc97e5e7ecb45482

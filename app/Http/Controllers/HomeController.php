@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobInfo;
 use Illuminate\Http\Request;
 use App\Models\{
     User,Poser,JobInfo,tag
@@ -26,9 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('main.index');
     }
 
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> 24d88ca3754c561c498342bfbc97e5e7ecb45482
     /**
      * Show the application dashboard.
      *

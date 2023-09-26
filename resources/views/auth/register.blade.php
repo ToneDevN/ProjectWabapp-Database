@@ -6,7 +6,7 @@
         {{-- Username --}}
         <div class="input-control mb-2">
             <x-input-label for="username" :value="__('Username')" />
-            <input type="text" name="name" id="name" placeholder="Username" class=" w-full inputStyle "
+            <input type="text" name="name" id="name" placeholder="Username" class=" w-full inputStyle " value=" {{ old('name') }}"
                 autofocus pattern="[a-zA-Z0-9]*" required>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -14,7 +14,7 @@
         {{-- Email --}}
         <div class="input-control mb-2">
             <x-input-label for="email" :value="__('Email')" />
-            <input type="email" name="email" id="email" placeholder="Email" class=" w-full inputStyle "
+            <input type="email" name="email" id="email" placeholder="Email" class=" w-full inputStyle " value=" {{ old('email') }}"
                 required>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
@@ -38,7 +38,7 @@
         {{-- Phonenumber --}}
         <div class="input-control mb-4">
             <x-input-label for="phonenumber" :value="__('Phonenumber')" />
-            <input type="text" name="phonenumber" id="phonenumber" placeholder="Phonenumber"
+            <input type="text" name="phonenumber" id="phonenumber" placeholder="Phonenumber" value=" {{ old('phonenumber') }}"
                 class="w-full inputStyle " pattern="[0-9]*" required>
             <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
         </div>
