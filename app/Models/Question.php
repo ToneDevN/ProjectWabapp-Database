@@ -18,4 +18,8 @@ class Question extends Model
     public function responses(){
         return $this->hasMany(responseJobInfo::class);
     }
+
+    public function response_has_question(){
+        return $this->hasMany(response_has_question::class);
+    }
 }

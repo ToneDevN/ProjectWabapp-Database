@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('response_job_infos', function (Blueprint $table) {
-            $table->id('idResponse');
             $table->unsignedBigInteger('idUser');
             $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');
@@ -23,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->primary('idResponse');
             $table->foreign('idUser')->references('idUser')->on('users');
             $table->foreign('idQuestion')->references('idQuestion')->on('question_has_job_infos');
             $table->foreign('idJobInfo')->references('idJobInfo')->on('question_has_job_infos');
