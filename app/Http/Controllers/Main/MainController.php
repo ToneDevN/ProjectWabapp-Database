@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobInfo;
+use App\Models\Poser;
+use App\View\Components\main;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -14,9 +16,30 @@ class MainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $job = JobInfo::all();
+        abort_if(!isset($job), 404);
+        
+        return view('main.index',['job'=>$job]);
+        
+
       
-        return view('main.index');
+        
+    }
+
+
+    public function detail(){
+        $poser = Poser::where('idUser','=',3)->first();
+        $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
+        return $job;
+        // if(isset($job)){
+
+        //     return view('main.detail', ['job'=>$job]);
+        // }else{
+        //     return view('main.detail');
+        // }
+        // abort_if(@isset($job),404);
+        // return view('main.detail');
+        
     }
 
     /**

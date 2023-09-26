@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('response_has_questions', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('idResponse');
             $table->unsignedBigInteger('idQuestion');
             $table->boolean('answer');
             $table->timestamps();
+            $table->softDeletes();
 
+            $table->primary(['idResponse','idQuestion']);
             $table->foreign('idResponse')->references('idResponse')->on('response_job_infos');
             $table->foreign('idQuestion')->references('idQuestion')->on('questions');
 

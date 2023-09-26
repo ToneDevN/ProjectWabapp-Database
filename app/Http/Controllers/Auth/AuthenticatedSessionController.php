@@ -30,9 +30,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (auth()->user()->type == 'user') {
-            return redirect()->route('user.home');
+            return redirect()->route('home');
         } else if (auth()->user()->type == 'poser') {
-            return redirect()->route('poser.home');
+            return redirect()->route('home');
         } else if (auth()->user()->type == 'admin') {
             return redirect()->route('admin.home');
         } else {

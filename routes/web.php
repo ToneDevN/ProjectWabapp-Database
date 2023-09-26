@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
+use Database\Seeders\AdminUserSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,17 +27,23 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/detail', [MainController::class, 'detail'])->name('user.detail');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
+// User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('user.home');
-    Route::get('/detail', [HomeController::class, 'detail'])->name('user.detail');
+    
+   
 });
+// Poser
 Route::middleware(['auth', 'user-access:poser'])->group(function () {
-    Route::get('/poser', [HomeController::class, 'poserHome'])->name('poser.home');
+    
 });
+// Admin
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
 });

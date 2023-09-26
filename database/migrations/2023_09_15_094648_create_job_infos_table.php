@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('job_infos', function (Blueprint $table) {
             $table->id('idJobInfo');
             $table->unsignedBigInteger('idUser');
-            $table->string('nameJob',45);
+            $table->string('nameJob');
             $table->string('workType',45);
             $table->string('jobType', 45);
             $table->string('discription');
