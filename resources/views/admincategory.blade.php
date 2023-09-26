@@ -23,10 +23,20 @@
 background: #dbdbdb;
 border: 0px;
     }
+    .Form{
+        background-color: #fff;
+    color: #4869D9;
+    /* width: 250px;
+    height: 500px; */
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 20px;
+    }
     </style>
 
 <h1 class="mb-1">Category</h1>
-
+<div class="Form">
 <table class="table">
     <thead>
         <tr>
