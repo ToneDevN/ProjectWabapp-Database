@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('response_job_infos', function (Blueprint $table) {
-            $table->unsignedBigInteger('idResponse');
             $table->unsignedBigInteger('idUser');
             $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');

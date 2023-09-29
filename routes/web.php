@@ -29,10 +29,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/detail', [MainController::class, 'detail'])->name('user.detail');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
+// User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('jobinfo', postcRUDController::class);
@@ -47,9 +51,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('submit-response', [enrollController::class, 'submitResponse'])->name('submit_summary');//this route is for answer question and store data like email tel. resume
 
 });
+// Poser
 Route::middleware(['auth', 'user-access:poser'])->group(function () {
-    Route::get('/poser', [HomeController::class, 'poserHome'])->name('poser.home');
+    
 });
+// Admin
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::get('admin/{text}', [HomeController::class, 'admint'])->name('admin.user');
@@ -65,5 +71,8 @@ Route::delete('/admin/category/deleteTag/{idTag}', [HomeController::class, 'dele
 Route::post('/admin/category/storeTag', [HomeController::class, 'storeTag'])->name('admin.category.storeTag');
 
 });
+
+
+
 
 require __DIR__.'/auth.php';

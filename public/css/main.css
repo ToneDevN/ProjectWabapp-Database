@@ -1,0 +1,38 @@
+
+.bg-gradient{
+    border-radius: 12px;
+    height: 150px;
+    background-image: linear-gradient(#4869D9,#fff);
+}
+
+.img-user{
+    width: 150px;
+    height: 150px;
+    border: 5px solid;
+    border-color: #f2f2f2;
+    margin-top: -75px;
+}
+
+.colors-blue{
+    background-color: #4869D9;
+}
+
+.colors-blue:hover{
+    background-color: #3B57B3;
+}
+
+.category:hover{
+    background-color: #3B57B3;
+}
+
+.posts:hover{
+    background-color: #3B57B3;
+}
+
+.borders-blue{
+    border-color: #4869D9;
+}
+
+.bt-save:hover{
+    background-color: #3B57B3;
+}
