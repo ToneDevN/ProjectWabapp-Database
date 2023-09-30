@@ -7,7 +7,6 @@
         const fileSize = fileInput.files[0].size;
 
         if (fileSize > maxSize) {
-            document.getElementById('file-size-error').textContent = 'File size exceeds 10MB limit.';
             fileInput.value = '';
         } else {
             document.getElementById('file-size-error').textContent = '';
