@@ -10,5 +10,5 @@
             @endempty
         </a>
     </div>
-    <h1 class="text-4xl font-semibold flex justify-center m-6">{{ $user->name }}</h1>
+    <h1 class="text-4xl md:text-3xl font-semibold flex justify-center m-6">{{ $user->name }}</h1>
 </div>

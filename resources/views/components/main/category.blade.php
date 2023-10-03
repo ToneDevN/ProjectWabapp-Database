@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-3xl font-semibold">Category</h1>
+    <h1 class="text-3xl md:text-2xl font-semibold">Category</h1>
     <div class="flex flex-wrap gap-2 p-1 my-4">
         @isset($tag)
             @foreach ($tag as $tag)

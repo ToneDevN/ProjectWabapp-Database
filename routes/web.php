@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     Main\MainController
 };
 
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('savefavorite', [FavoriteController::class, 'save'])->name('save.favorite');
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {

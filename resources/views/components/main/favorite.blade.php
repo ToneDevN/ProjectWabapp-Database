@@ -1,18 +1,26 @@
 <div>
-    <div class="p-5 m-2 colors-blue h-96 rounded-lg">
+    <div class="p-5 m-2 bg-blue h-96 rounded-lg flex flex-wrap">
         <h1 class="text-2xl font-semibold text-white mb-5">Saved Job</h1>
         @isset($favorites)
-            @foreach ($favorites as $favofite)
+            @foreach ($favorites as $favorite)
                 <button class="bg-slate-200 h-1/4 rounded-lg mb-4 p-4 w-full  grid content-center hover:bg-slate-300">
                     <div class="flex gap-4">
-                        <div class="w-16 h-16 grid content-center"><img src="{{ url('../images/google.png') }}" alt=""
-                                class="w-full auto"></div>
+                        <div class="w-max h-max grid content-center">
+                            @if (@isset($favorite->Poser->User->image))
+                                <img src="{{ asset('profile/' . $job->Poser->idUser . '.jpg') }}" alt=""
+                                    class="w-full auto rounded-full img-poser">
+                            @else
+                                <img src="{{ url('../images/ProfileUserIcon.jpg') }}" alt=""
+                                    class="w-full auto rounded-full img-poser">
+                            @endif
+                        </div>
                         <div class="grid justify-items-start">
-                            <p class="text-left font-semibold no-underline hover:underline">
-                                {{ $favofite->JobInfo->nameJob }}
+                            <p class="text-left font-semibold md:text-sm no-underline hover:underline">
+                                {{ $favorite->JobInfo->nameJob }}
                             </p>
-                            <span class=""><a href="" class="text-left text-sm no-underline hover:underline">
-                                    {{ $favofite->JobInfo->Poser->userOfficeAddress }}
+                            <span class=""><a href=""
+                                    class="text-left text-sm md:text-xs no-underline hover:underline">
+                                    {{ $favorite->JobInfo->Poser->userOfficeAddress }}
                                 </a></span>
                         </div>
                     </div>
