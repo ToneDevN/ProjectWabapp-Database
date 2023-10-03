@@ -95,8 +95,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
    5. ```npm run build```
 
 ### Livewire for search component
-    1. ```composer require livewire/livewire``` 
-    2. ```php artisan livewire:publish --config```
-    3. ```php artisan livewire:publish --assets```
+    composer require livewire/livewire
+    php artisan livewire:publish --config
+    php artisan livewire:publish --assets
 
    
