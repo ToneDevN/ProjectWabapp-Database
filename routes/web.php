@@ -6,8 +6,8 @@ use App\Http\Controllers\{
     postcRUDController,
     enrollController,
     adminController,
-    notificationController,
-    Main\MainController
+    Main\MainController,
+    notificationController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -46,12 +46,9 @@ Route::post('/profile/upload', [ProfileController::class,'upload'])->name('profi
 Route::get('/profile/logout', [ProfileController::class, 'logout'])->name('profile.logout');
 Route::post('/profiles/passwordupdate', [ProfileController::class, 'updatePassword'])->name('password.update');
 Route::post('/profiles/update-categories',[ProfileController::class,'updateCategories'])->name('update.tag');
-
-
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-
     Route::get('/home', [MainController::class, 'index'])->name('home');
     Route::resource('jobinfo', postcRUDController::class);
     Route::get('enroll', [enrollController::class, 'enroll']);
@@ -59,7 +56,6 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('summarizeData', [enrollController::class, 'sumarizeData'])->name('summarize');
     Route::post('submit-response', [enrollController::class, 'submitResponse'])->name('submit_summary');
      //this route is for answer question and store data like email tel. resume
-
 });
 // Poser
 Route::middleware(['auth', 'user-access:poser'])->group(function () {
@@ -87,7 +83,5 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
     Route::get('admin/{text}', [AdminController::class, 'admint'])->name('adminUser');
 });
-
-
 
 require __DIR__ . '/auth.php';
