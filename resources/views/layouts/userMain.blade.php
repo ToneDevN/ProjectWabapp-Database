@@ -22,8 +22,8 @@
                     </div>
                 </div>
                 <div class="p-1 mb-4 grid gap-4">
-                    <a href="" class="flex text-xl text-yellow-500 hover:scale-105 lg:text-lg"><span
-                            class="material-symbols-outlined" style="font-size: 32px">warning</span>
+                    <a href="" class="flex text-xl text-yellow-500 hover:scale-105 lg:text-lg">
+                        <span class="material-symbols-outlined place-self-center" style="font-size: 32px">warning</span>
                         <p class="px-3 no-underline hover:underline">You have not varification.</p>
                     </a>
                     <a href="" class="flex text-xl text-yellow-500 hover:scale-105 lg:text-lg"><span

@@ -89,7 +89,7 @@ class postcRUDController extends Controller
                 // Create a new Question record
                 $newQuestion = new Question();
                 $newQuestion->question = $question;
-                //convert answer from str to int 
+                //convert answer from str to int
                 $newQuestion->answer = (int)$correctAnswers[$key];
                 $newQuestion->save();
 

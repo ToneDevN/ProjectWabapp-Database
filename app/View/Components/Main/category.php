@@ -2,6 +2,7 @@
 
 namespace App\View\Components\main;
 
+use App\Models\user_has_tag;
 use Illuminate\View\Component;
 
 class category extends Component
@@ -23,6 +24,7 @@ class category extends Component
      */
     public function render()
     {
-        return view('components.main.category');
+        $tag = user_has_tag::where('idUser', auth()->user()->idUser)->get();
+        return view('components.main.category', ['tag' => $tag]);
     }
 }

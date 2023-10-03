@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('response_job_infos', function (Blueprint $table) {
             $table->unsignedBigInteger('idUser');
+            $table->unsignedBigInteger('idResponse');
             $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');
             $table->string('answer',1);
