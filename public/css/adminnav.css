@@ -1,0 +1,64 @@
+
+.menu {
+    position: fixed;
+    top: 80px; 
+    left: 0;
+    width: 250px;
+    height: 100%; /* Cover the full height of the viewport */
+    background-color: #fff;
+    color: #4869D9;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 999; /* Adjust z-index as needed */
+}
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+.menu ul li {
+    margin-bottom: 10px;
+}
+.menu ul li a {
+    text-decoration: none;
+    color: #4869D9; 
+    font-weight: bold;
+    display: block; 
+    padding: 5px;
+    transition: background-color 0.3s, color 0.3s; 
+    border-radius: 10px;
+}
+.menu ul li a:hover {
+    background-color: #4869D9; 
+    color: #fff; 
+}
+.menu ul li a:not(.active) {
+    color: #4869D9; 
+}
+.menu ul li a .material-symbols-outlined {
+margin-right: 10px;
+}
+
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+.content {
+    margin-left: 270px; /* Adjust the margin to match the menu width */
+    padding-top: 80px; /* Ensure content appears below the fixed header and menu */
+}
+.distance{
+    height: 20px;
+}
+.distance_top{
+    height: 20px;
+}
+.distance_bottom{
+    height: 20px;
+}
+

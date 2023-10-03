@@ -86,6 +86,6 @@
                 <input type="submit" value="Post" class="submit-button">
             </div>
             <div class="distance_bottom"></div>
-        </form></div>
+        </form>
     </body>
 </x-app-layout>

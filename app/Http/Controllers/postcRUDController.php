@@ -52,26 +52,34 @@ class postcRUDController extends Controller
         return view('jobinfo.create2', compact('jobCategories'));
     }
     public function store(Request $request)
-    {
-        // Retrieve data from session
-        $step1Data = session('step1_data');
+{
+    // Retrieve data from session
+    $step1Data = session('step1_data');
 
-        // Check if session data exists
-        if ($step1Data) {
-            // Create a new jobinfo instance and save data from create1.blade.php
-            $jobinfo = new jobinfo();
-            $jobinfo->idUser = auth()->user()->idUser;
-            $jobinfo->nameJob = $step1Data['nameJob'];
-            $jobinfo->workType = $step1Data['workplace_type'];
-            $jobinfo->jobType = $step1Data['job_type'];
-            $jobinfo->discription = $request->input('job_description');
-            $qualification = $request->has('qualification') ? "1" : "0";
+    // Check if session data exists
+    if ($step1Data) {
+        // Create a new jobinfo instance and save data from create1.blade.php
+        $jobinfo = new jobinfo();
+        $jobinfo->idUser = auth()->user()->idUser;
+        $jobinfo->nameJob = $step1Data['nameJob'];
+        $jobinfo->workType = $step1Data['workplace_type'];
+        $jobinfo->jobType = $step1Data['job_type'];
+        $jobinfo->discription = $request->input('job_description');
+        $qualification = $request->has('qualification') ? "1" : "0";
 
-            // Update the jobinfo's qualification field
-            $jobinfo->Quallification = $qualification;
+        // Update the jobinfo's qualification field
+        $jobinfo->Quallification = $qualification;
 
+            // Save the jobinfo instance
             $jobinfo->save();
-$idJobInfo = $jobinfo->idJobInfo;
+
+            // Attach tags to the jobinfo if 'category' is an array
+            $categoryInput = $request->input('category');
+            if (is_array($categoryInput)) {
+                $jobinfo->tags()->attach($categoryInput);
+            } else {
+                $jobinfo->tags()->attach($categoryInput);
+            }
 
         // Create and associate questions using the question_has_job_infos pivot table
         $screeningQuestions = $request->input('screening_question');
@@ -96,12 +104,14 @@ $idJobInfo = $jobinfo->idJobInfo;
         }
 
             // Redirect to a success page or any other page you desire
-            return redirect()->route('home')->with('success', 'Job created successfully!');
+            return redirect()->route('dashboard')->with('success', 'Job created successfully!');
         } else {
             // Handle the case where session data is missing
             return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');
         }
     }
+
+
 
 
 

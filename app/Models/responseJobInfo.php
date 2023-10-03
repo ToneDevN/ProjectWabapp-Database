@@ -13,7 +13,7 @@ class responseJobInfo extends Model
 protected $fillable = ['idUser'];
 
     public function User(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'idUser');
     }
 
     public function Jobinfo(){
