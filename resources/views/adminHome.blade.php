@@ -1,5 +1,10 @@
+<<<<<<< Ploy
+ @extends('layouts.adminpage')
+
+=======
 @extends('layouts.adminpage')
 <link href="http://127.0.0.1:8000/css/admin.css" rel="stylesheet">
+>>>>>>> main
 @section('content')
 <style>
     .menu ul li a#dashboard {
