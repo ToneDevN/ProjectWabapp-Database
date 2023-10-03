@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('noti', [notificationController::class, 'noti'])->name('noti');
 
-    
+
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
@@ -77,6 +77,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('admin/{text}', [AdminController::class, 'admint'])->name('adminUser');
 });
 
-
+Route::get('/profiles',[ProfileController::class,'index'])->name('Profile_index');
+Route::post('/profile/update1',[ProfileController::class,'update1'])->name('Profile.update1');
+Route::post('/profile/updateoffice',[ProfileController::class,'updateoffice'])->name('office.update');
+Route::post('/profile/upload', [ProfileController::class,'upload'])->name('profile.upload');
+Route::get('/profile/logout', [ProfileController::class, 'logout'])->name('profile.logout');
+Route::post('/profiles/passwordupdate', [ProfileController::class, 'updatePassword'])->name('password.update');
+Route::post('/profiles/update-categories',[ProfileController::class,'updateCategories'])->name('update.tag');
 
 require __DIR__ . '/auth.php';
