@@ -23,6 +23,7 @@ class user extends Component
      */
     public function render()
     {
-        return view('components.main.user');
+        $user = auth()->user();
+        return view('components.main.user', ['user'=> $user]);
     }
 }

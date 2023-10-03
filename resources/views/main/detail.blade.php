@@ -7,7 +7,7 @@
 
             <div class="p-4">
                 <div class="flex my-4">
-                    <div class="w-16 h-16 grid content-center border border-gray-200 rounded-md"><img
+                    <div class="w-16 h-16 grid content-center border border-gray-200 rounded-md p-2"><img
                             src="{{ url('../images/google.png') }}" alt="" class="w-full auto"></div>
                     <div class="flex self-center mx-4 font-medium text-lg ">
                         <a href="" class="text-left underline underline-offset-1 mr-2">{{ $job->Poser->userOfficeName}}
@@ -46,7 +46,7 @@
                     </button>
                     <div>
                         <h1 class="text-xl font-semibold">About the job</h1>
-                        <div class="bg-gray-100 rounded-md">
+                        <div class="bg-gray-100 rounded-md p-4">
                             <p>{{ $job->discription }}</p>
                         </div>
                     </div>

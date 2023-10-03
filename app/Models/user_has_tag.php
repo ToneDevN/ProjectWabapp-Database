@@ -10,4 +10,8 @@ class user_has_tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function tag(){
+        return $this->belongsTo(tag::class,'idTag');
+    }
 }

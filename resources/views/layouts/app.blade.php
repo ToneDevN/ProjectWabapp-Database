@@ -10,8 +10,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="{{url('../css/navigation.css')}}">
+        <link rel="stylesheet" href="{{url('/css/navigation.css')}}">
         <script src="https://cdn.tailwindcss.com"></script>
+        <livewire:styles />
     </head>
     <body class="font-sans antialiased">
 
@@ -22,8 +23,8 @@
                         <a href="" class="flex-none">
                             <img class="logo" src="{{url('../images/logo.png')}}" alt="" width="150px">
                         </a>
-                        <div>
-                            <x-search/>
+                        <div class="form-search">
+                            @livewire('search')
                         </div>
                         <div class="">
                             <x-navigation/>
@@ -36,5 +37,6 @@
             <!-- Page Content -->
             {{ $slot }}
         </div>
+        <livewire:scripts />
     </body>
 </html>

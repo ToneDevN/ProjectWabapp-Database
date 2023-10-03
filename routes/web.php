@@ -4,8 +4,11 @@ use App\Http\Controllers\{
     HomeController,
     ProfileController,
     postcRUDController,
-    enrollController,adminController
+    enrollController,
+    adminController,
+    Main\MainController
 };
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +32,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [MainController::class, 'index'])->name('home');
     Route::get('/detail', [MainController::class, 'detail'])->name('user.detail');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,7 +41,7 @@ Route::middleware('auth')->group(function () {
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [MainController::class, 'index'])->name('home');
     Route::resource('jobinfo', postcRUDController::class);
     //Test route check how create job
     Route::get('createjob', [postcRUDController::class, 'create'])->name('create'); //fetch and input worktype
