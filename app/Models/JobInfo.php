@@ -21,7 +21,7 @@ class JobInfo extends Model
         'nameJob',
     ];
 
-    protected $primaryKey = 'idJobInfo';
+
 
     public function Poser(){
         return $this->belongsTo(Poser::class, 'idUser');
