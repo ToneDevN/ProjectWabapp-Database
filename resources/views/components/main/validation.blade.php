@@ -1,6 +1,11 @@
 <div>
     @if (auth()->user()->type == 'poser')
-        
+        <div class="w-full h-12 colors-blue flex rounded-md">
+            <a href="" class="flex text-ls text-white place-self-center">
+                <span class="material-symbols-outlined h-12 place-self-center justify-self-start" style="font-size: 48px">Done</span>
+                <p class="px-3 no-underline hover:underline self-center text-xl font-semibold ">Verified</p>
+            </a>
+        </div>
     @else
         <div class="flex content-center">
             @if (!@isset($varification))

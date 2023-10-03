@@ -26,12 +26,13 @@ class MainController extends Controller
     }
 
 
-    public function detail(){
-        $poser = Poser::where('idUser','=',2)->first();
+    public function detail(Request $request){
+       
+        $poser = JobInfo::where('idJobInfo',$request->id)->first();
         $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
         abort_if(!isset($job),404);
         if(isset($job)){
-            return view('main.detail', ['job'=>$job]);
+            return view('main.detail', ['job'=>$job,'idjob'=>$request->id]);
         }
         
         

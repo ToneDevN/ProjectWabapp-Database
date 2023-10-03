@@ -40,14 +40,7 @@
             <!-- Profile Form -->
             <form action="{{ route('ansQuestion') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <label for="job_id">Select a Job: Dont forgot to Delete it when Main Page is complete !!!!!!!!!!I make it for check jobId Is practical??</label>
-<select name="job_id" id="job_id" class="input-field" required>
-    <option value="">Select a idJob</option>
-    @foreach ($jobInfoList as $jobId)
-        <option value="{{ $jobId }}">{{ $jobId }}</option>
-    @endforeach
-</select> <!-- make sure this form will work if I selected idjobinfo?
-     You can delete it when you make main succesful SUCCESSFULLYYYYY-->
+                
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" class="input-field" value="{{ auth()->user()->email }}" required>
 

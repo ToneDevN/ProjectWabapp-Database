@@ -12,10 +12,10 @@ class favorite extends Model
     use SoftDeletes;
 
     public function User(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'idUser');
     }
 
     public function JobInfo() {
-        return $this->belongsTo(JobInfo::class);
+        return $this->belongsTo(JobInfo::class, 'idJobInfo');
     }
 }

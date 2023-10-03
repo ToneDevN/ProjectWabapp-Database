@@ -70,44 +70,33 @@ class postcRUDController extends Controller
             // Update the jobinfo's qualification field
             $jobinfo->Quallification = $qualification;
 
-            // Save the jobinfo instance
             $jobinfo->save();
+$idJobInfo = $jobinfo->idJobInfo;
 
-            // Attach tags to the jobinfo if 'category' is an array
-            $categoryInput = $request->input('category');
-            if (is_array($categoryInput)) {
-                $jobinfo->tags()->attach($categoryInput);
-            } else {
-                $jobinfo->tags()->attach($categoryInput);
-            }
+        // Create and associate questions using the question_has_job_infos pivot table
+        $screeningQuestions = $request->input('screening_question');
+        $correctAnswers = $request->input('correct_answer');
 
-            // Create and associate questions using the question_has_job_infos pivot table
-            $screeningQuestions = $request->input('screening_question');
-            $correctAnswers = $request->input('correct_answer');
+        foreach ($screeningQuestions as $key => $question) {
+            // Create a new Question record
+            $newQuestion = new Question();
+            $newQuestion->question = $question;
+            // Convert answer from str to int
+            $newQuestion->answer = (int)$correctAnswers[$key];
+            $newQuestion->save();
 
-            foreach ($screeningQuestions as $key => $question) {
-                // Create a new Question record
-                $newQuestion = new Question();
-                $newQuestion->question = $question;
-                //convert answer from str to int
-                $newQuestion->answer = (int)$correctAnswers[$key];
-                $newQuestion->save();
+            // Get the ID of the newly created question
+            $idQuestion = $newQuestion->id;
 
-                // Get the ID of the newly created question
-                $idQuestion = $newQuestion->id;
-
-                // Create a new Question_has_jobInfo record and associate it with the Question
-                $associatedQuestion = new Question_has_jobInfo();
-                $associatedQuestion->idJobInfo = auth()->user()->idUser;
-                $associatedQuestion->idQuestion = $idQuestion;
-                $associatedQuestion->save();
-
-                // Save the Question record again
-                $newQuestion->save();
-            }
+            // Create a new Question_has_jobInfo record and associate it with the Question and JobInfo
+            $associatedQuestion = new Question_has_jobInfo();
+            $associatedQuestion->idJobInfo = $idJobInfo; // Use the auto-incremented idJobInfo
+            $associatedQuestion->idQuestion = $idQuestion;
+            $associatedQuestion->save();
+        }
 
             // Redirect to a success page or any other page you desire
-            return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+            return redirect()->route('home')->with('success', 'Job created successfully!');
         } else {
             // Handle the case where session data is missing
             return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');

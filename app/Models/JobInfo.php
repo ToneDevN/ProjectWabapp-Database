@@ -19,12 +19,14 @@ class JobInfo extends Model
         'nameJob',
     ];
 
+    protected $primaryKey = 'idJobInfo';
+
     public function Poser(){
         return $this->belongsTo(Poser::class, 'idUser');
     }
 
     public function favorites() {
-        return $this->hasMany(favorite::class);
+        return $this->hasMany(favorite::class, 'idJobInfo');
     }
 
     public function Questions(){

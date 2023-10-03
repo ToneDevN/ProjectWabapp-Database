@@ -14,15 +14,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class enrollController extends Controller
-{
-    public function enroll(){
+{ public $idjob;
+    public function enroll(Request $request){
         $user = auth()->user();
-        $jobInfoList = JobInfo::pluck('idjobinfo', 'idjobinfo');
-        return view('enroll.enrollwork',compact('user','jobInfoList'));
+        $this->idjob = $request->input('job_id');
+        session(['idJobInfo'=>$this->idjob]);
+        
+        return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
     }
 
     public function ansQuestion(Request $request)
     {
+        $idjob = session('idJobInfo');
         // Validate the form data
         $request->validate([
             'email' => 'required|email',
@@ -37,7 +40,7 @@ class enrollController extends Controller
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '_' . $request->input('job_id') . '_' . $originalFileName;
+        $filename = $userId . '_' . $idjob. '_' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);
@@ -50,7 +53,7 @@ class enrollController extends Controller
         session(['resumeFile' => $request->file('resume')->get()]);
 
         // Retrieve the job ID from the request
-        $jobId = $request->input('job_id');
+        $jobId = $idjob;
         session(['jobId' => $jobId]);
 
         // Fetch question IDs related to the specified job
