@@ -6,7 +6,7 @@ use App\Http\Controllers\{
     postcRUDController,
     enrollController,
     adminController,
-    Main\MainController,
+    Main\MainController
 };
 use Illuminate\Support\Facades\Route;
 
