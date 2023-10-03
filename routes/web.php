@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     enrollController,
     adminController,
     notificationController,
+    Main\MainController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,8 @@ Route::post('/profiles/update-categories',[ProfileController::class,'updateCateg
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
+
+    Route::get('/home', [MainController::class, 'index'])->name('home');
     Route::resource('jobinfo', postcRUDController::class);
     Route::get('enroll', [enrollController::class, 'enroll']);
     Route::post('ansQuestion', [enrollController::class, 'ansQuestion'])->name('ansQuestion'); //this route is for answer question and store data like email tel. resume
