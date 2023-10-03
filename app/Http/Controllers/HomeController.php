@@ -44,12 +44,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function adminHome() {
-        $countuser = User::all()->count();
-        $countpost = poser::all()->count();
-        $countinfo = JobInfo::all()->count();
-        return view('adminHome',compact('countuser','countpost','countinfo'));
-    }
+    
     public function admint($text) {
         if($text == 'category'){
             $tags = Tag::whereNull('deleted_at')->get();

@@ -2,13 +2,13 @@
 <div>
     <ul class="font-medium flex flex-row gap-10">
         <li>
-            <button>
+            <button onClick="function(){{route('home')}}">
                 <div class="h-9"><span class="material-icons" style="font-size: 36px">home</span></div>
                 <p class="navigationUnderline">Home</p>
             </button>
         </li>
         <li>
-            <button>
+            <button onClick="{{route('noti')}}">
                 <div class="h-9"><span class="material-icons" style="font-size: 36px">notifications</span></div>
                 <p class="navigationUnderline">Notifications</p>
             </button>
