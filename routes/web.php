@@ -7,8 +7,8 @@ use App\Http\Controllers\{
     enrollController,
     adminController,
     Main\MainController,
-    notificationController
 };
+use App\Http\Controllers\notificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
