@@ -1,5 +1,4 @@
 <x-app-layout>
-    <<<<<<< Ploy
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -22,7 +21,4 @@
         </div>
     </div>
     </x-app-layout>
-    =======
-       <h1>Home</h1>
-    </x-app-layout>
-    >>>>>>> main
+
