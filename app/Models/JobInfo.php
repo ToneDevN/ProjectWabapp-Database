@@ -15,6 +15,8 @@ class JobInfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $primaryKey = 'idJobInfo';
+
     protected $fillable = [
         'nameJob',
     ];

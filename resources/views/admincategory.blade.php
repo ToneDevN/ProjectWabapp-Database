@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Font+Name&display=swap">
+    <link href="http://127.0.0.1:8000/css/admin.css" rel="stylesheet">
+
 
 </head>
 @extends('layouts.adminpage')
@@ -18,15 +20,19 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-    }.form-control-input{
+    }
+    .form-control-input{
         border-radius: 10px;
 background: #dbdbdb;
 border: 0px;
     }
+
     </style>
 
-<h1 class="mb-1">Category</h1>
 
+<div class="container">
+
+<h1 class="mb-1">Category</h1>
 <table class="table">
     <thead>
         <tr>
@@ -52,7 +58,7 @@ border: 0px;
     </tbody>
 </table>
 
-<div class="container">
+<div class="content1">
     <form action="{{ route('admin.category.storeTag') }}" method="POST">
         @csrf
         <div class="d-flex align-items-start">

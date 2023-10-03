@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="{{ url('../css/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="http://127.0.0.1:8000/css/adminnav.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 <body>
-
     <div class="min-h-screen ">
-        <header class="bg-white">
+        <header id="nav" class="bg-white">
             <nav class="flex px-10 py-2 border-b-2">
                 <div class="w-full flex flex-wrap items-center justify-between">
                     <a href="" class="flex-none">
@@ -28,7 +29,10 @@
                 </div>
             </nav>
         </header>
+
         <div class="block">
+
+            <div class="distance">
             <div class="menu">
 
                 <!-- เมนูฝั่งซ้าย -->
@@ -40,10 +44,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://127.0.0.1:8000/admin/user" class="active" id="user">
+                        <a href="http://127.0.0.1:8000/adminUser" class="active" id="user">
                             <span class="material-symbols-outlined">person</span>
                             <p>Users</p>
-
                         </a>
                     </li>
                     <li><a href="http://127.0.0.1:8000/admin/post" class="active" id="post">
@@ -51,7 +54,8 @@
                             <p>Post</p>
                         </a>
                     </li>
-                    <li><a href="http://127.0.0.1:8000/admin/category" class="active" id="category">
+                    <li>
+                        <a href="http://127.0.0.1:8000/admin/category" class="active" id="category">
                             <span class="material-symbols-outlined">sell</span>
                             <p>Category</p>
 
@@ -59,9 +63,9 @@
                     </li>
                 </ul>
             </div>
+        </div>
 
-            <div class="menu" style="width:55%
-            ">
+            <div style="width:65%">
                 @yield('content')
             </div>
 
@@ -73,3 +77,7 @@
 </body>
 
 </html>
+
+
+
+
