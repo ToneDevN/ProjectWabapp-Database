@@ -8,7 +8,6 @@ use App\Http\Controllers\{
     adminController,
     Main\MainController,
 };
-use App\Http\Controllers\notificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
