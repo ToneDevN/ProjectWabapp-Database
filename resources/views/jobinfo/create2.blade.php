@@ -87,6 +87,5 @@
             </div>
             <div class="distance_bottom"></div>
         </form>
-        </div>
     </body>
 </x-app-layout>

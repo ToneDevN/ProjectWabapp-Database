@@ -11,7 +11,7 @@
                     {{-- Category --}}
                     <x-main.category/>
                 </div>
-                <div class="p-1 mb-4 grid gap-4">
+                <div class="p-2 mb-4 grid gap-4">
                    {{-- validation --}}
                    <x-main.validation/>
                 </div>

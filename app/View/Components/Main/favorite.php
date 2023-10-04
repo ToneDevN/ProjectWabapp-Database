@@ -2,6 +2,7 @@
 
 namespace App\View\Components\main;
 
+
 use Illuminate\View\Component;
 
 class favorite extends Component
@@ -23,6 +24,10 @@ class favorite extends Component
      */
     public function render()
     {
-        return view('components.main.favorite');
+        $favorites = \App\Models\favorite::where('idUser',auth()->user()->idUser)->limit(3)->get();
+        
+        return view('components.main.favorite',[
+            'favorites' => $favorites,
+        ]);
     }
 }

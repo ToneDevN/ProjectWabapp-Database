@@ -66,14 +66,9 @@ body {
     }
 }
 
-.search{
-    width: 500px;
-    height: 40px;
-    background: url('../images/Search.png');
-    background-position: 7px 7px;
-    background-repeat: no-repeat;
-    padding-left:30px;
-}
+
+
+
 
 #match_underline_Home{
 margin-top: 7px;
@@ -100,10 +95,32 @@ width: 30px;
 height: 7px;
 }
 
+.form-search{
+    width: 500px;
+}
+
+.search{
+    width: 500px;
+    height: 40px;
+    background: url('../images/Search.png');
+    background-position: 7px 7px;
+    background-repeat: no-repeat;
+    padding-left:30px;
+}
+
 .input-search{
     background-color: #F5F5F5;
     border: none;
     border-radius: 7px;
+}
+
+.dropdown-search{
+    width: 500px;
+    background-color: #F5F5F5;
+}
+.dropdown-profile{
+    width: 100px;
+    background-color: #F5F5F5;
 }
 body {
     background-color: #e5f0ff;

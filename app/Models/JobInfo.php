@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\favorite;
+use App\Models\Poser;
+use App\Models\Question;
+use App\Models\responseJobInfo;
 use App\Models\tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,12 +21,14 @@ class JobInfo extends Model
         'nameJob',
     ];
 
+
+
     public function Poser(){
-        return $this->belongsTo(Poser::class);
+        return $this->belongsTo(Poser::class, 'idUser');
     }
 
     public function favorites() {
-        return $this->hasMany(favorite::class);
+        return $this->hasMany(favorite::class, 'idJobInfo');
     }
 
     public function Questions(){

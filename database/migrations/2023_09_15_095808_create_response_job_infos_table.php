@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('response_job_infos', function (Blueprint $table) {
             $table->bigIncrements('idResponse'); // This line creates the idResponse column as primary key
             $table->unsignedBigInteger('idUser');
+            $table->unsignedBigInteger('idResponse');
             $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');
             $table->string('answer', 1);
             $table->string('resume')->comment('pathResume');
+            $table->tinyInteger('notification')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

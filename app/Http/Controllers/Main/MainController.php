@@ -17,8 +17,7 @@ class MainController extends Controller
      */
     public function index()
     {   $job = JobInfo::all();
-        abort_if(!isset($job), 404);
-        
+
         return view('main.index',['job'=>$job]);
         
 
@@ -27,18 +26,15 @@ class MainController extends Controller
     }
 
 
-    public function detail(){
-        $poser = Poser::where('idUser','=',3)->first();
+    public function detail(Request $request){
+       
+        $poser = JobInfo::where('idJobInfo',$request->id)->first();
         $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
-        return $job;
-        // if(isset($job)){
-
-        //     return view('main.detail', ['job'=>$job]);
-        // }else{
-        //     return view('main.detail');
-        // }
-        // abort_if(@isset($job),404);
-        // return view('main.detail');
+        abort_if(!isset($job),404);
+        if(isset($job)){
+            return view('main.detail', ['job'=>$job,'idjob'=>$request->id]);
+        }
+        
         
     }
 

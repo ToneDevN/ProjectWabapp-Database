@@ -229,6 +229,24 @@ body {
 .checkbox-text {
     flex: 1;
 }
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.distance{
+    height: 20px;
+}
+.distance_top{
+    height: 20px;
+}
+.distance_bottom{
+    height: 20px;
+}
+
 
 /* Change button color when checked */
 .styled-checkbox:checked + .styled-label {

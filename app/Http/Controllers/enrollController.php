@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class enrollController extends Controller
-{
-    public function enroll(){
+{ public $idjob;
+    public function enroll(Request $request){
         $user = auth()->user();
-        $jobInfoList = JobInfo::pluck('idjobinfo', 'idjobinfo');
-        return view('enroll.enrollwork',compact('user','jobInfoList'));
+        $this->idjob = $request->input('job_id');
+        session(['idJobInfo'=>$this->idjob]);
+        
+        return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
     }
 
     public function ansQuestion(Request $request)
@@ -37,7 +39,7 @@ class enrollController extends Controller
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '_' . $request->input('job_id') . '_' . $originalFileName;
+        $filename = $userId . '' . $request->input('job_id') . '' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);

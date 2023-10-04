@@ -3,8 +3,7 @@
         <div class="distance_top"></div>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
         <link href="http://127.0.0.1:8000/css/createjob.css" rel="stylesheet">
-        <div class="container">
-            <form action="{{ route('create2') }}" method="post">
+        <form action="{{ route('create2') }}" method="post">
 
             @csrf
 
@@ -42,7 +41,5 @@
             <div class="distance_bottom"></div>
 
         </form>
-    </div>
-
     </body>
 </x-app-layout>

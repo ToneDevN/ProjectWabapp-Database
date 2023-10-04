@@ -70,9 +70,16 @@ class postcRUDController extends Controller
         // Update the jobinfo's qualification field
         $jobinfo->Quallification = $qualification;
 
-// Save the jobinfo instance to get the auto-incremented idJobInfo
-$jobinfo->save();
-$idJobInfo = $jobinfo->idJobInfo;
+            // Save the jobinfo instance
+            $jobinfo->save();
+
+            // Attach tags to the jobinfo if 'category' is an array
+            $categoryInput = $request->input('category');
+            if (is_array($categoryInput)) {
+                $jobinfo->tags()->attach($categoryInput);
+            } else {
+                $jobinfo->tags()->attach($categoryInput);
+            }
 
         // Create and associate questions using the question_has_job_infos pivot table
         $screeningQuestions = $request->input('screening_question');
@@ -96,13 +103,13 @@ $idJobInfo = $jobinfo->idJobInfo;
             $associatedQuestion->save();
         }
 
-        // Redirect to a success page or any other page you desire
-        return redirect()->route('home')->with('success', 'Job created successfully!');
-    } else {
-        // Handle the case where session data is missing
-        return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');
+            // Redirect to a success page or any other page you desire
+            return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+        } else {
+            // Handle the case where session data is missing
+            return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');
+        }
     }
-}
 
 
 
