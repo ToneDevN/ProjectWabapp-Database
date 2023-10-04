@@ -18,8 +18,9 @@ class enrollController extends Controller
     public function enroll(Request $request){
         $user = auth()->user();
         $this->idjob = $request->input('job_id');
+    
         session(['idJobInfo'=>$this->idjob]);
-        
+
         return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
     }
 

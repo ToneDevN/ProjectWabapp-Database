@@ -29,7 +29,7 @@
             </button>
         </li>
         <li>
-            <form action="{{ route('logout') }}" method="post">
+            <form action="{{ route('Profile_index') }}" method="get">
                 @csrf
                 <button onclick="onclick="event.preventDefault(); this.closest('form').submit();" class="hover:bg-blue-400">
                     <div class="h-9"><img class="mb-2" src="{{ url('../images/ProfileIcon.jpg') }}" alt=""
@@ -39,6 +39,6 @@
             </form>
 
         </li>
-        
+
     </ul>
 </div>

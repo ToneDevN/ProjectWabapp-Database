@@ -70,8 +70,8 @@ class postcRUDController extends Controller
         // Update the jobinfo's qualification field
         $jobinfo->Quallification = $qualification;
 
-            // Save the jobinfo instance
-            $jobinfo->save();
+        $jobinfo->save();
+        $idJobInfo = $jobinfo->idJobInfo;
 
             // Attach tags to the jobinfo if 'category' is an array
             $categoryInput = $request->input('category');
