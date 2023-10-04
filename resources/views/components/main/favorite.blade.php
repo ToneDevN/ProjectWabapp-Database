@@ -1,5 +1,5 @@
 <div>
-    <div class="p-5 m-2 bg-blue h-96 rounded-lg flex flex-wrap">
+    <div class="p-5 m-2 bg-blue h-max rounded-lg flex flex-wrap">
         <h1 class="text-2xl font-semibold text-white mb-5">Saved Job</h1>
         @isset($favorites)
             @foreach ($favorites as $favorite)

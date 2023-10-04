@@ -25,7 +25,6 @@ class enrollController extends Controller
 
     public function ansQuestion(Request $request)
     {
-        $idjob = session('idJobInfo');
         // Validate the form data
         $request->validate([
             'email' => 'required|email',
@@ -40,7 +39,7 @@ class enrollController extends Controller
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '_' . $idjob. '_' . $originalFileName;
+        $filename = $userId . '' . $request->input('job_id') . '' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);
@@ -53,7 +52,7 @@ class enrollController extends Controller
         session(['resumeFile' => $request->file('resume')->get()]);
 
         // Retrieve the job ID from the request
-        $jobId = $idjob;
+        $jobId = $request->input('job_id');
         session(['jobId' => $jobId]);
 
         // Fetch question IDs related to the specified job

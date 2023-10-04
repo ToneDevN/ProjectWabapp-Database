@@ -133,6 +133,7 @@
                                 Ensure your office name and office location to enchance
                                 account to post the job.
                             </div>
+                            @isset($posersData)
                             <form action="/profile/updateoffice" method="POST">
                                 @csrf
                                 <span class="title-item">Office Name</span><br>
@@ -143,6 +144,7 @@
                                     required>
                                 <p><button class="cf" type="submit">save</button></p>
                             </form>
+                            @endisset
                         </div>
 
                         <!-- Logout -->

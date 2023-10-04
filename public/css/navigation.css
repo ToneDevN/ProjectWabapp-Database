@@ -118,6 +118,10 @@ height: 7px;
     width: 500px;
     background-color: #F5F5F5;
 }
+.dropdown-profile{
+    width: 100px;
+    background-color: #F5F5F5;
+}
 body {
     background-color: #e5f0ff;
 }

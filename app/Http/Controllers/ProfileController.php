@@ -95,12 +95,17 @@ public function updatePassword(Request $request)
 public function upload(Request $request)
 {
     $user = auth()->user()->idUser;
+    $userimage = User::where('idUser', $user)->first();
     $image = $request->file('profile_image');
     if ($image) {
-        $originalName = $image->getClientOriginalName();
-        $image->storeAs('public/profile', $originalName);
-        $user->image = $originalName;
-        $user->save();
+        $originalName = $user.'.jpg';
+        // $image->storeAs('profile/', $originalName);
+
+        $resumeFilePath = public_path('profile/' . $originalName);
+        file_put_contents($resumeFilePath, $image );
+
+        $userimage->image = 1;
+        $userimage->save();
 
         return redirect()->back()->with('success', 'Image changed successfully ');
     } else {
