@@ -97,20 +97,18 @@ public function upload(Request $request)
     $user = auth()->user()->idUser;
     $userimage = User::where('idUser', $user)->first();
     $image = $request->file('profile_image');
+
     if ($image) {
-        $originalName = $user.'.jpg';
-        // $image->storeAs('profile/', $originalName);
+        $originalName = $image->getClientOriginalName();
+        $image->storeAs('public/profile', $originalName);
+        $user->image = $originalName;
+        $user->save();
 
-        $resumeFilePath = public_path('profile/' . $originalName);
-        file_put_contents($resumeFilePath, $image );
-
-        $userimage->image = 1;
-        $userimage->save();
-
-        return redirect()->back()->with('success', 'Image changed successfully ');
+        return redirect()->back()->with('success', 'Image changed successfully');
     } else {
-        return redirect()->back()->with('error', 'Image changed incorrect');
+        return redirect()->back()->with('error', 'Image upload failed');
     }
 }
+
 }
 
