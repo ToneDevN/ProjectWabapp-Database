@@ -18,7 +18,7 @@ class enrollController extends Controller
     public function enroll(Request $request){
         $user = auth()->user();
         $this->idjob = $request->input('job_id');
-    
+
         session(['idJobInfo'=>$this->idjob]);
 
         return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
@@ -36,11 +36,13 @@ class enrollController extends Controller
         // Retrieve the authenticated user's ID
         $userId = auth()->id();
 
+        $idjob = session('idJobInfo');
+
         // Get the original filename
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '' . $request->input('job_id') . '' . $originalFileName;
+        $filename = $userId . '_' . $idjob . '_' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);
@@ -57,7 +59,7 @@ class enrollController extends Controller
         session(['jobId' => $jobId]);
 
         // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
+        $questionIds = Question_has_jobinfo::where('idJobinfo', $idjob)->pluck('idQuestion');
 
         // Fetch the actual question data using these IDs
         $questionsData = Question::whereIn('idQuestion', $questionIds)->get();
@@ -79,9 +81,9 @@ class enrollController extends Controller
 
         // Retrieve the job ID from the session
         $jobId = session('jobId');
-
+        $idjob = session('idJobInfo');
         // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
+        $questionIds = Question_has_jobinfo::where('idJobinfo', $idjob)->pluck('idQuestion');
 
         // Fetch the actual question data using these IDs
         $questionsData = Question::whereIn('idQuestion', $questionIds)->get();
@@ -95,7 +97,7 @@ class enrollController extends Controller
             'resumeFileName' => $resumeFileName,
             'questionsData' => $questionsData,
             'selectedOptions' => $selectedOptions, // Pass selected options to the view
-            'jobId' => $jobId,
+            'jobId' => $idjob,
         ]);
     }
 
@@ -108,6 +110,7 @@ class enrollController extends Controller
         $responses = [];
 
         $selectedOptions = session('selected_options');
+        $idjob = session('idJobInfo');
 
         // Check if 'selected_option' exists in the request and is an array
         if (isset($selectedOptions) && is_array($selectedOptions)) {
@@ -115,7 +118,7 @@ class enrollController extends Controller
                 $response = new responseJobInfo();
                 $response->idUser = $userId;
                 $response->idQuestion = $questionId;
-                $response->idJobInfo = $request->session()->get('jobId');
+                $response->idJobInfo = $idjob;
                 $response->answer = $answer;
 
                // Get the filename and file content from the session

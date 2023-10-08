@@ -13,7 +13,7 @@
         @isset($job)
             @foreach ($job as $job)
                 <button class="h-2/5 mb-4 p-4 w-full grid content-center border-b-2 hover:bg-slate-200"
-                    onClick="myFunction({{ $job->idJobInfo }})"">
+                    onClick="myFunction({{ $job->idJobInfo }})">
                     <div class="flex gap-6">
                         <div class="w-16 h-16 grid content-center">
                             @if (@isset($job->Poser->User->image))

@@ -64,8 +64,6 @@ Route::middleware(['auth', 'user-access:poser'])->group(function () {
     Route::get('createjob', [postcRUDController::class, 'create'])->name('create'); //fetch and input worktype
     Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2'); // fetch and create question
     Route::post('store', [postcRUDController::class, 'store'])->name('store'); // insert on to DB
-
-
 });
 
 // Admin

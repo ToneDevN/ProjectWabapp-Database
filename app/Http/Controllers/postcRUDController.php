@@ -104,7 +104,7 @@ class postcRUDController extends Controller
         }
 
             // Redirect to a success page or any other page you desire
-            return redirect()->route('dashboard')->with('success', 'Job created successfully!');
+            return redirect()->route('home')->with('success', 'Job created successfully!');
         } else {
             // Handle the case where session data is missing
             return redirect()->back()->with('error', 'Session data missing. Please complete step 1 first.');

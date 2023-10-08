@@ -29,34 +29,28 @@
             </div>
 
             <!-- Display PDF name -->
-
             <div class="form-group">
                 <label for="resume_name">Resume Name:</label>
-                <input style="width:275px"type="text" name="resume_name" id="resume_name" class="form-control" value="{{ $resumeFileName }}" readonly>
+                <input style="width:275px" type="text" name="resume_name" id="resume_name" class="form-control" value="{{ $resumeFileName }}" readonly>
             </div>
 
-            <H1 class="h1summary">Screen Question</H1> <!--Quest section-->
-            <!-- Display Questions and Selected Answers -->
+            <h1 class="h1summary">Screen Question</h1> <!-- Quest section -->
+            <!-- Display Questions and Editable Answers -->
             @foreach ($questionsData as $question)
-    <div class="question-container-summy">
-        <p class="question">{{ $question->Question }}</p>
-        <div class="radio-option">
-            <label>
-                Answer:
-                <span>
-                    @if (isset($selectedOptions[$question->idQuestion]) && $selectedOptions[$question->idQuestion] == 1)
-                        Yes
-                    @elseif (isset($selectedOptions[$question->idQuestion]) && $selectedOptions[$question->idQuestion] == 2)
-                        No
-                    @else
-                        Not answered
-                    @endif
-                </span>
-            </label>
-        </div>
-        <div class="distance_top"></div>
-    </div>
-@endforeach
+                <div class="question-container-summy">
+                    <p class="question">{{ $question->Question }}</p>
+                    <div class="radio-option">
+                        <label>
+                            Answer:
+                            <span>
+                                <input type="radio" name="question_{{ $question->idQuestion }}" value="1" {{ isset($selectedOptions[$question->idQuestion]) && $selectedOptions[$question->idQuestion] == 1 ? 'checked' : '' }}> Yes
+                                <input type="radio" name="question_{{ $question->idQuestion }}" value="2" {{ isset($selectedOptions[$question->idQuestion]) && $selectedOptions[$question->idQuestion] == 2 ? 'checked' : '' }}> No
+                            </span>
+                        </label>
+                    </div>
+                    <div class="distance_top"></div>
+                </div>
+            @endforeach
 
             <div class="distance"></div>
 
