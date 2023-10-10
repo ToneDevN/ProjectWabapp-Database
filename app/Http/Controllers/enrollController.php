@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{JobInfo,
+use App\Models\{
+    JobInfo,
     Question,
     Question_has_jobInfo,
     responseJobInfo,
@@ -14,15 +15,98 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class enrollController extends Controller
-{ public $idjob;
-    public function enroll(Request $request){
+{
+    public $idjob;
+    public function enroll(Request $request)
+    {
         $user = auth()->user();
         $this->idjob = $request->input('job_id');
 
-        session(['idJobInfo'=>$this->idjob]);
+        session(['idJobInfo' => $this->idjob]);
 
-        return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
+        return view('enroll.enrollwork', ['user' => $user, 'idJobInfo' => $this->idjob]);
     }
+
+    public function editenroll(Request $request)
+    {
+        $user = auth()->user();
+        $idjob =  $request->request->get('job_id');
+        session(['idjob' => $idjob]);
+        $this->idjob = $request->input('editApplication');
+
+        session(['idJobInfo' => $this->idjob]);
+
+        return view('enroll.editenrollwork', ['user' => $user, 'idJobInfo' => $this->idjob]);
+    }
+    public function updateenroll(Request $request)
+    {
+        // Store the filename in the session
+        $user = auth()->user()->idUser;
+        $email = $request->request->get('email');
+        $phone = $request->request->get('phone');
+        $resume = $request->file('resume')->get();
+        $idjob = session('idjob');
+        $user1 = User::find(auth()->user()->idUser);
+
+        if ($user1) {
+            $user1->phonenumber = $phone;
+            $user1->email = $email;
+            $user1->save();
+        }
+
+        // Initialize the resumeFileName and resumeFile variables
+        $resumeFileName = null;
+        $resumeFile = null;
+
+        $response = ResponseJobInfo::where('idJobInfo', $idjob)
+            ->where('idUser', auth()->user()->idUser)
+            ->first();
+
+        if ($response) {
+            if (isset($resume)) {
+                $request->file('resume')->get();
+                $originalFileName = $request->file('resume')->getClientOriginalName();
+
+                $idjob = session('idjob');
+                // Make a unique filename to detect who and what work is being submitted
+                $resumeFileName = auth()->user()->idUser . '_' . $idjob . '_' . $originalFileName;
+                session(['resumeFileName' => $resumeFileName]);
+
+                // Store the file content in the session
+                session(['resumeFile' => $request->file('resume')->get()]);
+                session(['resumeFileName' => $resumeFileName]);
+
+                $resumeFile = session('resumeFile');
+
+                // Store the file in the public/resume directory using public_path()
+                $resumeFilePath = public_path('/resume/' . $resumeFileName);
+                file_put_contents($resumeFilePath, $resumeFile);
+            }
+
+            if (isset($resumeFileName)) {
+                $response->resume = '/resume/' . $resumeFileName;
+
+            }$response->save();
+            
+        }
+
+        $poser = JobInfo::where('idJobInfo', auth()->user()->idUser)->first();
+        $job = JobInfo::where('idUser', '=', $idjob)->first();
+        // abort_if(!isset($job), 404);
+
+        // Check if the combination of idQuestion and idJobInfo exists
+        $applicationExists = DB::table('response_job_infos')
+            ->where('idUser', auth()->user()->idUser)
+            ->where('idJobInfo', $idjob)
+            ->exists();
+
+        return view('main.detail', [
+            'job' => $poser,
+            'idjob' => $idjob,
+            'applicationExists' => $applicationExists, // Pass the result to the view
+        ]);
+    }
+
 
     public function ansQuestion(Request $request)
     {
@@ -121,13 +205,13 @@ class enrollController extends Controller
                 $response->idJobInfo = $idjob;
                 $response->answer = $answer;
 
-               // Get the filename and file content from the session
-            $resumeFileName = session('resumeFileName');
-            $resumeFile = session('resumeFile');
+                // Get the filename and file content from the session
+                $resumeFileName = session('resumeFileName');
+                $resumeFile = session('resumeFile');
 
-            // Store the file in the public/resume directory using public_path()
-            $resumeFilePath = public_path('/resume/' . $resumeFileName);
-            file_put_contents($resumeFilePath, $resumeFile);
+                // Store the file in the public/resume directory using public_path()
+                $resumeFilePath = public_path('/resume/' . $resumeFileName);
+                file_put_contents($resumeFilePath, $resumeFile);
 
                 $response->resume = '/resume/' . $resumeFileName;
                 $response->save();

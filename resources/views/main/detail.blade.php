@@ -36,15 +36,30 @@
                         <p class="self-center font-medium text-lg ml-6">{{ $job->jobType }}</p>
                     </div>
                     <div class="flex gap-4 w-full my-6">
-
+                        @if (!$applicationExists)
                         <form action="{{ route('enroll') }}" method='post' class="h-12 w-1/2">
                             @csrf
                             <input type="hidden" name="job_id" value="{{ $idjob }}">
-                            <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
-                                class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
-                                Apply
-                            </button>
-                        </form>
+                            <!-- Check if the combination does not exist -->
+                                <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
+                                        class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
+                                    Apply
+                                </button>
+                            </form>
+                            @else
+                                <!-- Display a message or take any other action if the combination exists -->
+                                <form action="{{ route('edit.enroll') }}" method='post' class="h-12 w-1/2">
+                                    @csrf
+                                    <input type="hidden" name="job_id" value="{{ $idjob }}">
+                                    <!-- Check if the combination does not exist -->
+                                        <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
+                                                class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
+                                            Edit Application
+                                        </button>
+                                    </form>
+                            @endif
+
+
 
                         <form action="{{ route('save.favorite') }}" method='post' class="h-12 w-1/2" id="saveFavoriteForm">
                             @csrf
