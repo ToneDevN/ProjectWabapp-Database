@@ -61,7 +61,7 @@ class enrollController extends Controller
         $response = ResponseJobInfo::where('idJobInfo', $idjob)
             ->where('idUser', auth()->user()->idUser)
             ->first();
-dd();
+
         if ($response) {
             if (isset($resume)) {
                 $request->file('resume')->get();
@@ -85,9 +85,9 @@ dd();
 
             if (isset($resumeFileName)) {
                 $response->resume = '/resume/' . $resumeFileName;
-            }
-            // Save the updated record
-            $response->save();
+
+            }$response->save();
+            
         }
 
         $poser = JobInfo::where('idJobInfo', auth()->user()->idUser)->first();
