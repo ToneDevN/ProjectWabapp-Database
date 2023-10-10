@@ -17,7 +17,6 @@ return new class extends Migration
            // This line creates the idResponse column as primary key
             $table->unsignedBigInteger('idUser');
             $table->id('idResponse');
-            $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');
             $table->string('answer', 1);
             $table->string('resume')->comment('pathResume');
@@ -26,8 +25,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('idUser')->references('idUser')->on('users');
-            $table->foreign('idQuestion')->references('idQuestion')->on('question_has_job_infos');
-            $table->foreign('idJobInfo')->references('idJobInfo')->on('question_has_job_infos');
+            $table->foreign('idJobInfo')->references('idJobInfo')->on('job_infos');
         });
     }
 

@@ -1,5 +1,8 @@
 @extends('layouts.mainPage')
 @section('content')
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/css/createjob.css" rel="stylesheet">
+
     <div class="bg-white rounded-xl min-h-full p-4 px-12">
         @isset($job)
             <h1 class="text-4xl font-semibold my-4">{{ $job->nameJob }}</h1>
@@ -36,7 +39,7 @@
                         <p class="self-center font-medium text-lg ml-6">{{ $job->jobType }}</p>
                     </div>
                     <div class="flex gap-4 w-full my-6">
-                        @if (@isset($job->Poser->User->image))
+                        @user
                             <form action="{{ route('enroll') }}" method='post' class="h-12 w-1/2">
                                 @csrf
                                 <input type="hidden" name="job_id" value="{{ $idjob }}">
@@ -46,8 +49,7 @@
                                 </button>
                             </form>
 
-                            <form action="{{ route('save.favorite') }}" method='post' class="h-12 w-1/2"
-                                id="saveFavoriteForm">
+                            <form action="{{ route('save.favorite') }}" method='post' class="h-12 w-1/2" id="saveFavoriteForm">
                                 @csrf
                                 <input type="hidden" name="saveFavorite" value="{{ $job->idJobInfo }}">
                                 <button name="saveFavorite" value="{{ $job->idJobInfo }}"
@@ -55,7 +57,8 @@
                                     Save
                                 </button>
                             </form>
-                        @else
+                        @enduser
+                        @poser
                             <div class="h-12 w-1/2">
                                 <button type="submit" name="idjob" id="openEdit"
                                     class="bg-yellow-500 hover:bg-yellow-600 rounded-md h-12 w-full text-white text-lg font-semibold">
@@ -68,7 +71,7 @@
                                     Delete
                                 </button>
                             </div>
-                        @endif
+                        @endposer
                     </div>
                     <button class="flex border border-gray-300 rounded-md w-full p-4 my-6">
                         <div class="w-12 h-12 grid content-center ">
@@ -98,27 +101,73 @@
     <div id="editModal" class="fixed mt-10 inset-0 z-50 hidden">
         <!-- Modal Content -->
         <div class="flex place-content-center">
-            <div class="bg-white p-6 rounded-md shadow-lg">
+            <div class="bg-white p-6 rounded-md shadow-lg ">
                 <h2 class="text-2xl font-semibold mb-4">Edit job information</h2>
 
-                <form action="" method="POST" class="flex flex-col my-4">
+                <form action="{{ route('poser.editJob')}}" method="POST" class="flex flex-col my-4 w-96">
                     @csrf
-                    <label for="subject_code"></label>
-                    <input type="number" class=" w-96 rounded-lg my-2 border-2" name="session">
-                    <label for="subject_name">เวลาเปิด :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceOpen">
-                    <label for="subject_desc">เวลาปิด :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceClose">
-                    <label for="section">เวลาสาย :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceLate">
+                    @isset($posersData)
+                    <input type="hidden" name="idJobinfo" value="{{$job->idJobInfo}}">
+                        <p class="indicate">*Indicates required</p>
+
+                        <label for="company">
+                            <p class="input_distance">Company:</p>
+                        </label>
+                        <input type="text" name="company" id="company" class="input-style w-96"
+                            value="{{ $posersData->userOfficeName }}" required disabled>
+
+                        <label for="job_location">
+                            <p class="input_distance">Job Location:</p>
+                        </label>
+                        <input type="text" name="job_location" id="job_location" class="input-style w-96"
+                            value="{{ $posersData->userOfficeAddress }}" required disabled>
+
+                        <label for="nameJob">
+                            <p class="input_distance">Job Title:</p>
+                        </label>
+                        <input type="text" name="nameJob" id="namejob" class="input-style w-96" value="{{$job->nameJob}}" required>
+                        <label for="workplace_type">
+                            <p class="input_distance">Workplace Type:</p>
+                        </label>
+                        <select name="workplace_type" id="workplace_type" class="input-style w-96">
+                            <option value="remote">Remote</option>
+                            <option value="office">Office</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+
+                        <label for="job_type">
+                            <p class="input_distance">Job Type:</p>
+                        </label>
+                        <select name="job_type" id="job_type" class="input-style w-96">
+                            <option value="full_time">Full-time</option>
+                            <option value="part_time">Part-time</option>
+                            <option value="contract">Contract</option>
+                        </select>
+
+                        <label for="description">
+                            <p class="input_distance">Job Description:</p>
+                        </label>
+                        <input type="text" name="description" id="description" class="input-style w-96" value="{{$job->description}}" required>
+
+                        <h2 class="text-2xl font-semibold my-4">Question</h2>
+                        @foreach ($question as $question)
+                            <input type="text" name="questions[]"  class="input-style w-96"
+                                value="{{ $question->Question }}" required>
+                                <input type="hidden" name="idQuestion[]" value="{{$question->idQuestion}}">
+                                <span>
+                                    <input type="radio" name="answers[]" value="1" {{ $question->answer == '1' ? 'checked' : '' }}> Yes
+                                    <input type="radio" name="answers[]" value="0" {{ $question->answer == '0' ? 'checked' : '' }}> No
+                                </span>
+                        @endforeach
+                    @endisset
                     <div class="flex justify-end">
                         <button id="closeEdit" type="button"
                             class="mt-4 mx-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                            ปิด
+                            Close
                         </button>
                         <button id="saveData" type="submit"
-                            class="mt-4 mx-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            เพิ่ม
+                            class="mt-4 mx-4 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            Edit
                         </button>
                     </div>
                 </form>
@@ -130,26 +179,19 @@
         <!-- Modal Content -->
         <div class="flex place-content-center">
             <div class="bg-white p-6 rounded-md shadow-lg">
-                <h2 class="text-2xl font-semibold mb-4">เปิดเช็คชื่อ</h2>
+                <h2 class="text-2xl font-semibold mb-4">Are you sure to delete job?</h2>
 
-                <form action="" method="POST" class="flex flex-col my-4">
+                <form action="{{ route('poser.deleteJob')}}" method="POST" class="flex flex-col my-4">
                     @csrf
-                    <label for="subject_code">สัปดาที่ :</label>
-                    <input type="number" class=" w-96 rounded-lg my-2 border-2" name="session">
-                    <label for="subject_name">เวลาเปิด :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceOpen">
-                    <label for="subject_desc">เวลาปิด :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceClose">
-                    <label for="section">เวลาสาย :</label>
-                    <input type="time" class=" w-96 rounded-lg my-2 border-2" name="attendanceLate">
+                    <input type="hidden" name="idJobinfo" value="{{$job->idJobInfo}}">
                     <div class="flex justify-end">
                         <button id="closeDelete" type="button"
                             class="mt-4 mx-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                            ปิด
+                            Close
                         </button>
                         <button id="saveData" type="submit"
                             class="mt-4 mx-4 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded">
-                            เพิ่ม
+                            Delete
                         </button>
                     </div>
                 </form>
@@ -170,7 +212,7 @@
                 $("#editModal").addClass("hidden");
                 $("#modalOverlay").hide();
             });
-           
+
             $("#openDelete").click(function() {
                 $("#deleteModal").removeClass("hidden");
                 $("#modalOverlay").show();

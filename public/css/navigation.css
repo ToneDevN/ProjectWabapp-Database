@@ -22,7 +22,6 @@
     line-height: 5px;
 }
 .underlines {
-
     height: 5px;
     width: 50px;
     background-color: #4869D9;
@@ -56,6 +55,7 @@ body {
 
 .navigationUnderline{
     &::after{
+            visibility: hidden;
             content:"";
             float:left;
             background:#4869D9;

@@ -17,7 +17,7 @@ class enrollController extends Controller
 { public $idjob;
     public function enroll(Request $request){
         $user = auth()->user();
-        $this->idjob = $request->input('job_id');
+        $this->idjob = (int) $request->input('job_id');
     
         session(['idJobInfo'=>$this->idjob]);
 
@@ -36,11 +36,13 @@ class enrollController extends Controller
         // Retrieve the authenticated user's ID
         $userId = auth()->id();
 
+        $jobId = session('idJobInfo');
+        
         // Get the original filename
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '' . $request->input('job_id') . '' . $originalFileName;
+        $filename = $userId . '' . $jobId . '' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);
@@ -52,15 +54,10 @@ class enrollController extends Controller
         // Store the file content in the session
         session(['resumeFile' => $request->file('resume')->get()]);
 
-        // Retrieve the job ID from the request
-        $jobId = $request->input('job_id');
-        session(['jobId' => $jobId]);
-
-        // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
+        session(['jobId'=>$jobId]);
 
         // Fetch the actual question data using these IDs
-        $questionsData = Question::whereIn('idQuestion', $questionIds)->get();
+        $questionsData = Question::where('idJobInfo', $jobId)->get();
 
         // Redirect the user to the 'answerQuestion' view with the 'jobQuestions' data
         return view('enroll.answerQuestion', compact('questionsData', 'jobId'));
@@ -81,10 +78,11 @@ class enrollController extends Controller
         $jobId = session('jobId');
 
         // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
+
 
         // Fetch the actual question data using these IDs
-        $questionsData = Question::whereIn('idQuestion', $questionIds)->get();
+        $questionsData = Question::where('idJobInfo', $jobId)->get();
+    
 
         $selectedOptions = $request->input('selected_option');
         session(['selected_options' => $selectedOptions]);

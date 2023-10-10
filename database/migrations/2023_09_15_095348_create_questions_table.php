@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id('idQuestion');
+            $table->unsignedBigInteger('idJobInfo');
             $table->string('Question',45);
             $table->string('answer',1);
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('idJobInfo')->references('idJobInfo')->on('job_infos');
 
         });
     }

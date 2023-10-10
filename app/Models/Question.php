@@ -11,8 +11,10 @@ class Question extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function Jobinfos(){
-        return $this->belongsToMany(JobInfo::class);
+    protected $primaryKey = 'idQuestion';
+
+    public function Jobinfo(){
+        return $this->belongsTo(JobInfo::class);
     }
 
     public function responses(){

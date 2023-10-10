@@ -3,7 +3,9 @@
         <h1 class="text-2xl font-semibold text-white mb-5">Saved Job</h1>
         @isset($favorites)
             @foreach ($favorites as $favorite)
-                <button class="bg-slate-200 h-1/4 rounded-lg mb-4 p-4 w-full  grid content-center hover:bg-slate-300">
+            <form method="GET" action="{{ route('user.detail', ['id' => $favorite->idJobInfo ]) }}">
+                @csrf
+                <button class="bg-slate-200 rounded-lg mb-4 p-4 w-full  grid content-center hover:bg-slate-300">
                     <div class="flex gap-4">
                         <div class="w-max h-max grid content-center">
                             @if (@isset($favorite->Poser->User->image))
@@ -25,6 +27,7 @@
                         </div>
                     </div>
                 </button>
+            </form>
             @endforeach
         @endisset
 

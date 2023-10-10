@@ -25,7 +25,6 @@ class favorite extends Component
     public function render()
     {
         $favorites = \App\Models\favorite::where('idUser',auth()->user()->idUser)->limit(3)->get();
-        
         return view('components.main.favorite',[
             'favorites' => $favorites,
         ]);

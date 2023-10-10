@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\JobInfo;
 use App\Models\Poser;
+use App\Models\Question;
 use App\View\Components\main;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,16 @@ class MainController extends Controller
        
         $poser = JobInfo::where('idJobInfo',$request->id)->first();
         $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
+        $posersData = Poser::where('idUser', auth()->user()->idUser)->first();
+        $question = Question::where('idJobInfo', $request->id)->get();
         abort_if(!isset($job),404);
         if(isset($job)){
-            return view('main.detail', ['job'=>$poser,'idjob'=>$request->id]);
+            return view('main.detail', [
+                'job'=>$poser,
+                'idjob'=>$request->id,
+                'posersData' => $posersData,
+                'question' => $question
+            ]);
         }
         
         
