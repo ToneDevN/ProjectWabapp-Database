@@ -39,6 +39,9 @@
     font-size: 5em;
     margin-left: 20px;
 }
+span{
+    margin-bottom: 0.25em;
+}
 </style>
 <div class="container">
 <div id='container' >

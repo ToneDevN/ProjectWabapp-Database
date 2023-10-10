@@ -16,7 +16,7 @@ class Poser extends Model
     protected $primaryKey = 'idUser';
 
     public function Users() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'idUser');
     }
 
     public function Jobinfos(){

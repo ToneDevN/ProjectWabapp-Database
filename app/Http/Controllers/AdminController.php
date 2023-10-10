@@ -51,7 +51,7 @@ class AdminController extends Controller
     }
     public function adminHome() {
         $countuser = User::all()->count();
-        $countpost = poser::all()->count();
+        $countpost = JobInfo::all()->count();
         $counttag = tag::all()->count();
         return view('adminHome',compact('countuser','countpost','counttag'));
     }
@@ -60,4 +60,17 @@ class AdminController extends Controller
         $tags= Tag::all();
         return view('admin'.$text,compact('text','job','tags'));
     }
+    public function detail(Request $request){
+        $poser = JobInfo::where('idJobInfo',$request->id)->first();
+        $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
+        abort_if(!isset($job),404);
+        if(isset($job)){
+            return view('detailpost', ['job'=>$poser,'idjob'=>$request->id]);
+        }
+    }
+    public function deletePost($id){
+        JobInfo::where('idJobInfo',$id)->delete();
+        return redirect()->route('admin.t',['text'=>'post']) ;
+     }
+
 }
