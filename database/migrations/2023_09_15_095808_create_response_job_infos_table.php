@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('response_job_infos', function (Blueprint $table) {
-            $table->bigIncrements('idResponse'); // This line creates the idResponse column as primary key
+           // This line creates the idResponse column as primary key
             $table->unsignedBigInteger('idUser');
-            $table->unsignedBigInteger('idResponse');
+            $table->id('idResponse');
             $table->unsignedBigInteger('idQuestion');
             $table->unsignedBigInteger('idJobInfo');
             $table->string('answer', 1);

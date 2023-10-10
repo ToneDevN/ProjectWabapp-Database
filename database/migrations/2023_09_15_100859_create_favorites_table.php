@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->unsignedBigInteger('idUser')->nullable();
-            $table->unsignedBigInteger('idJobInfo')->nullable();
+            $table->unsignedBigInteger('idUser');
+            $table->unsignedBigInteger('idJobInfo');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->primary(['idUser', 'idJobInfo']);
             $table->foreign('idUser')->references('idUser')->on('users');
             $table->foreign('idJobInfo')->references('idJobInfo')->on('job_infos');
         });

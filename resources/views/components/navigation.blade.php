@@ -17,13 +17,13 @@
 <div>
     <ul class="font-medium flex flex-row gap-10">
         <li>
-            <button id="home" class="hover:bg-blue-400">
+            <button id="home">
                 <div class="h-9"><span class="material-icons" style="font-size: 36px">home</span></div>
                 <p class="navigationUnderline">Home</p>
             </button>
         </li>
         <li>
-            <button id="notification" class="hover:bg-blue-400">
+            <button id="notification"">
                 <div class="h-9"><span class="material-icons" style="font-size: 36px">notifications</span></div>
                 <p class="navigationUnderline">Notifications</p>
             </button>
@@ -31,7 +31,7 @@
         <li>
             <form action="{{ route('Profile_index') }}" method="get">
                 @csrf
-                <button onclick="onclick="event.preventDefault(); this.closest('form').submit();" class="hover:bg-blue-400">
+                <button onclick="onclick="event.preventDefault(); this.closest('form').submit();">
                     <div class="h-9"><img class="mb-2" src="{{ url('../images/ProfileIcon.jpg') }}" alt=""
                             id="icon"></div>
                     <p class="navigationUnderline">Me</p>

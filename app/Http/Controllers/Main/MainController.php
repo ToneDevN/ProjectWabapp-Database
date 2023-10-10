@@ -32,7 +32,7 @@ class MainController extends Controller
         $job = JobInfo::where('idUser', '=',$poser->idUser)->first();
         abort_if(!isset($job),404);
         if(isset($job)){
-            return view('main.detail', ['job'=>$job,'idjob'=>$request->id]);
+            return view('main.detail', ['job'=>$poser,'idjob'=>$request->id]);
         }
         
         
