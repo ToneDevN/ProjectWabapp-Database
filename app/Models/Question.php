@@ -10,6 +10,7 @@ class Question extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $primaryKey = 'idQuestion';
     public function Jobinfos(){
         return $this->belongsToMany(JobInfo::class);
