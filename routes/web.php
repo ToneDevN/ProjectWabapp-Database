@@ -46,10 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/logout', [ProfileController::class, 'logout'])->name('profile.logout');
     Route::post('/profiles/passwordupdate', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::post('/profiles/update-categories', [ProfileController::class, 'updateCategories'])->name('update.tag');
+    Route::get('noti/{name}/{job}', [notificationController::class, 'getresume'])->name('noti.re');
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-
     Route::resource('jobinfo', postcRUDController::class);
     Route::post('enroll', [enrollController::class, 'enroll'])->name('enroll');
     Route::post('ansQuestion', [enrollController::class, 'ansQuestion'])->name('ansQuestion'); //this route is for answer question and store data like email tel. resume
@@ -63,7 +63,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 Route::middleware(['auth', 'user-access:poser'])->group(function () {
     Route::get('createjob', [postcRUDController::class, 'create'])->name('create'); //fetch and input worktype
     Route::post('createjob2', [postcRUDController::class, 'create2'])->name('create2'); // fetch and create question
-    Route::post('store', [postcRUDController::class, 'store'])->name('store'); // insert on to DB
+    Route::post('store', [postcRUDController::class, 'store'])->name('store');
+    Route::post('fix', [notificationController::class, 'fix'])->name('fix.noti'); // insert on to DB
 });
 
 // Admin

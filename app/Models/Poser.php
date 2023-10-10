@@ -24,7 +24,7 @@ class Poser extends Model
     }
 
     protected $table = 'posers';
-    
+
 
 
 }
