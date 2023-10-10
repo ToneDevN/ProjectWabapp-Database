@@ -17,11 +17,11 @@ protected $fillable = ['idUser'];
     }
 
     public function Jobinfo(){
-        return $this->belongsTo(JobInfo::class);
+        return $this->belongsTo(JobInfo::class,'idJobInfo');
     }
 
-    public function Question(){
-        return $this->belongsTo(Question::class);
+    public function Questions(){
+        return $this->belongsTo(Question::class,'idQuestion');
     }
 
     public function response_has_question(){
