@@ -52,6 +52,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::resource('jobinfo', postcRUDController::class);
     Route::post('enroll', [enrollController::class, 'enroll'])->name('enroll');
+
+    Route::post('edit/enroll', [enrollController::class, 'editenroll'])->name('edit.enroll');
+    Route::post('edit/update/enroll', [enrollController::class, 'updateenroll'])->name('update.enroll');
+
     Route::post('ansQuestion', [enrollController::class, 'ansQuestion'])->name('ansQuestion'); //this route is for answer question and store data like email tel. resume
     Route::post('summarizeData', [enrollController::class, 'sumarizeData'])->name('summarize');
     Route::post('submit-response', [enrollController::class, 'submitResponse'])->name('submit_summary');  //this route is for answer question and store data like email tel. resume
@@ -80,15 +84,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // Edit Tag Form
     Route::get('/admin/category/editTag/{idTag}', [HomeController::class, 'editTagForm'])->name('admin.category.editTagForm');
     Route::post('/admin/category/updateTag/{idTag}', [HomeController::class, 'updateTag'])->name('admin.category.updateTag');
-
     // Delete Tag
     Route::delete('/admin/category/deleteTag/{idTag}', [HomeController::class, 'deleteTag'])->name('admin.category.deleteTag');
-
     // Add Tag Form
     Route::post('/admin/category/storeTag', [HomeController::class, 'storeTag'])->name('admin.category.storeTag');
 });
-
-
-
 
 require __DIR__ . '/auth.php';

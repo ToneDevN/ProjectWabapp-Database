@@ -94,8 +94,7 @@ class postcRUDController extends Controller
             $newQuestion->save();
 
             // Get the ID of the newly created question
-            $idQuestion = $newQuestion->id;
-
+            $idQuestion = $newQuestion->idQuestion;
             // Create a new Question_has_jobInfo record and associate it with the Question and JobInfo
             $associatedQuestion = new Question_has_jobInfo();
             $associatedQuestion->idJobInfo = $idJobInfo; // Use the auto-incremented idJobInfo
