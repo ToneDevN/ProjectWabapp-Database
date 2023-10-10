@@ -16,7 +16,7 @@ class Poser extends Model
     protected $primaryKey = 'idUser';
 
     public function Users() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'idUser');
     }
 
     public function Jobinfos(){
@@ -24,7 +24,11 @@ class Poser extends Model
     }
 
     protected $table = 'posers';
-    
 
+    protected $fillable = [
+        'idUser',
+        'userOfficeName',
+        'userOfficeAddress',
+    ];
 
 }

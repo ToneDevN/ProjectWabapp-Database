@@ -63,6 +63,9 @@ class User extends Authenticatable
     public function responseJobinfos(){
         return $this->hasMany(responseJobInfo::class);
     }
+    public function user_has_tag(){
+        return $this->hasMany(user_has_tag::class);
+    }
 
     protected $primaryKey = 'idUser';
 

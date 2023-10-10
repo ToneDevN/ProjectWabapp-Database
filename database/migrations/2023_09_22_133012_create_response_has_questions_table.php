@@ -19,7 +19,6 @@ return new class extends Migration
             $table->boolean('answer');
             $table->timestamps();
             $table->softDeletes();
-
             $table->primary(['idResponse','idQuestion']);
             $table->foreign('idResponse')->references('idResponse')->on('response_job_infos');
             $table->foreign('idQuestion')->references('idQuestion')->on('questions');

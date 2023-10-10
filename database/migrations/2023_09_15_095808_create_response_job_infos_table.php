@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idUser');
             $table->id('idResponse');
             $table->unsignedBigInteger('idJobInfo');
-            $table->string('answer', 1);
+            $table->string('answer',1);
             $table->string('resume')->comment('pathResume');
             $table->tinyInteger('notification')->default(0);
             $table->timestamps();

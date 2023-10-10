@@ -11,13 +11,13 @@ class responseJobInfo extends Model
     use HasFactory;
     use SoftDeletes;
 protected $fillable = ['idUser'];
-
+protected $primaryKey = 'idJobInfo';
     public function User(){
         return $this->belongsTo(User::class,'idUser');
     }
 
     public function Jobinfo(){
-        return $this->belongsTo(JobInfo::class);
+        return $this->belongsTo(JobInfo::class,'idJobInfo');
     }
 
 
