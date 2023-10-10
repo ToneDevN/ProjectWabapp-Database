@@ -4,12 +4,14 @@
 
     <head>
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link href="http://127.0.0.1:8000/css/profile.css" rel="stylesheet">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Bai+Jamjuree&family=Poppins:wght@300&display=swap');
         </style>
+
         <script>
         @if(session('success'))
         alert("{{ session('success') }}");
@@ -22,35 +24,87 @@
         function showUploadButton() {
             document.getElementById('bt-upload-img').style.display = 'block';
         }
-
-
         document.addEventListener("DOMContentLoaded", function() {
-            const checkboxes = document.querySelectorAll(".checkbox-tag");
-            checkboxes.forEach((checkbox) => {
-                checkbox.addEventListener("change", function() {
-                    const form = this.closest(".checkbox-form");
-                    const formData = new FormData(form);
+            const checkboxes = document.querySelectorAll(".styled-checkbox");
+            const addTagButton = document.getElementById("add-tag-button");
+            const removeTagButton = document.getElementById("remove-tag-button");
 
-                    fetch(form.action, {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "X-CSRF-TOKEN": document.querySelector(
-                                    'meta[name="csrf-token"]').getAttribute("content"),
-                            },
-                        })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            // Handle the response as needed.
-                            console.log(data);
-                        })
-                        .catch((error) => {
-                            console.error("Error:", error);
-                        });
-                });
+            // Function to add selected tags
+            async function addTags(selectedTagIds) {
+                try {
+                    const response = await fetch('/add-tags', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content'),
+                        },
+                        body: JSON.stringify({
+                            tagIds: selectedTagIds
+                        }),
+                    });
+
+                    if (response.ok) {
+                        console.log("Tags added successfully.");
+                    } else {
+                        console.error("Error adding tags.");
+                    }
+                } catch (error) {
+                    console.error("An error occurred while adding tags:", error);
+                }
+            }
+
+            // Function to remove selected tags
+            async function removeTags(selectedTagIds) {
+                try {
+                    const response = await fetch('/remove-tags', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content'),
+                        },
+                        body: JSON.stringify({
+                            tagIds: selectedTagIds
+                        }),
+                    });
+
+                    if (response.ok) {
+                        console.log("Tags removed successfully.");
+                    } else {
+                        console.error("Error removing tags.");
+                    }
+                } catch (error) {
+                    console.error("An error occurred while removing tags:", error);
+                }
+            }
+
+            addTagButton.addEventListener("click", function() {
+                const selectedTagIds = Array.from(checkboxes)
+                    .filter((checkbox) => checkbox.checked)
+                    .map((checkbox) => checkbox.value);
+
+                if (selectedTagIds.length > 0) {
+                    addTags(selectedTagIds);
+                } else {
+                    console.log("No tags selected to add.");
+                }
+            });
+
+            removeTagButton.addEventListener("click", function() {
+                const selectedTagIds = Array.from(checkboxes)
+                    .filter((checkbox) => checkbox.checked)
+                    .map((checkbox) => checkbox.value);
+
+                if (selectedTagIds.length > 0) {
+                    removeTags(selectedTagIds);
+                } else {
+                    console.log("No tags selected to remove.");
+                }
             });
         });
         </script>
+
 
     </head>
 
@@ -79,90 +133,117 @@
 
                         </form>
                         <!-- รูปภาพ -->
-                        @isset($img_default)
-                        $img_default = <img class="rounded-full" src="http://127.0.0.1:8000/../profile/Default.svg"
-                            alt="Profile Image" id="ProfileIcon">
-                        @endisset
                         <img class="rounded-full" src="http://127.0.0.1:8000/../profile/{{$image}}" alt="Profile Image"
                             id="ProfileIcon">
                     </div>
 
-                    <div class="pt">
-                        <!-- edit profile -->
-                        <div class="content-item">
-                            <div class="title">
-                                <h1>Profile information</h1>
-                                Update your profile information and email address.
-                            </div>
-                            <div class="form">
-                                <form action="/profile/update1" method="POST">
-                                    @csrf
-                                    <span class="title-item">Name</span><br>
-                                    <input type="text" name="name" value="{{Auth::user()->name}}" required><br>
-                                    <span class="title-item">Email</span><br>
-                                    <input type="email" name="email" value="{{ Auth::user()->email}}" required>
-                                    <p><button class="cf" type="submit">save</button></p>
-                                </form>
+                    <div class="body-navigation">
+                        <div class="background-1">
+                            <div class="content-1">
+                                <ul class="tag-list">
+                                    @foreach ($allTags as $category)
+                                    <li>
+                                        <span class="tag">{{ $category->tag }}</span>
+                                        <span class="tag-actions">
+                                            @if (in_array($category->idTag, $selectedTagIds))
+                                            <a href="{{ route('remove-tag', ['tagId' => $category->idTag]) }}"
+                                                class="remove-tag-link">Remove</a>
+                                            @else
+                                            <a href="{{ route('add-tag', ['tagId' => $category->idTag]) }}"
+                                                class="add-tag-link">Add</a>
+                                            @endif
+                                        </span>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
-
-                        <!-- edit password -->
-                        <div class="content-item">
-                            <div class="title">
-                                <h1>Update Password</h1>
-                                Ensure your account is using a long, random password to stay secure.
-                            </div>
-                            <form action="/profiles/passwordupdate" method="POST">
-                                @csrf
-                                <span class="title-item">Current Password</span>
-                                <br><input type="hidden" value='{{$old_password}}'>
-                                <input type="password" name="current_password" required placeholder="Current password">
-                                <br><span class="title-item">New Password</span>
-                                <br><input type="password" name="new_password" required placeholder="New password">
-                                <br><span class="title-item">Confirm Password</span>
-                                <br><input type="password" name="new_password_confirmation" required
-                                    placeholder="Confirm password">
-                                <p><button class="cf" type="submit">save</button></p>
-                            </form>
-                        </div>
-
-                        <!-- company -->
-                        <div class="content-item">
-                            <div class="title">
-                                <h1>Office</h1>
-                                Ensure your office name and office location to enchance
-                                account to post the job.
-                            </div>
-                            @isset($posersData)
-                            <form action="/profile/updateoffice" method="POST">
-                                @csrf
-                                <span class="title-item">Office Name</span><br>
-                                <input type="text" name="office_name" value="{{ $posersData->userOfficeName }}"
-                                    required><br>
-                                <span class="title-item">Office Address</span><br>
-                                <input type="text" name="office_add" value="{{ $posersData->userOfficeAddress}}"
-                                    required>
-                                <p><button class="cf" type="submit">save</button></p>
-                            </form>
-                            @endisset
-                        </div>
-
-                        <!-- Logout -->
-                        <div class="content-item">
-                            <div class="title">
-                                <h1>Logout</h1>
-                                Ensure your account is using a long, random password to stay secure.
-                            </div>
-                            <form class="logout" action="/profile/logout" method="GET">
-                                @csrf
-                                <button id="bt-logout" type="submit">Logout</button>
-                            </form>
-                        </div>
-
                     </div>
-                </div>
 
+
+                    <!-- edit profile -->
+                    <div class="content-item">
+                        <div class="title">
+                            <h1>Profile information</h1>
+                            Update your profile information and email address.
+                        </div>
+                        <div class="form">
+                            <form action="/profile/update1" method="POST">
+                                @csrf
+                                <span class="title-item">Name</span><br>
+                                <input type="text" name="name" value="{{Auth::user()->name}}" required><br>
+                                <span class="title-item">Email</span><br>
+                                <input type="email" name="email" value="{{ Auth::user()->email}}" required>
+                                <p><button class="cf" type="submit">save</button></p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- edit password -->
+                    <div class="content-item">
+                        <div class="title">
+                            <h1>Update Password</h1>
+                            Ensure your account is using a long, random password to stay secure.
+                        </div>
+                        <form action="/profiles/passwordupdate" method="POST">
+                            @csrf
+                            <span class="title-item">Current Password</span>
+                            <br><input type="hidden" value='{{$old_password}}'>
+                            <input type="password" name="current_password" required placeholder="Current password">
+                            <br><span class="title-item">New Password</span>
+                            <br><input type="password" name="new_password" required placeholder="New password">
+                            <br><span class="title-item">Confirm Password</span>
+                            <br><input type="password" name="new_password_confirmation" required
+                                placeholder="Confirm password">
+                            <p><button class="cf" type="submit">save</button></p>
+                        </form>
+                    </div>
+
+                    <!-- company -->
+                    <div class="content-item">
+                        <div class="title">
+                            <h1>Office</h1>
+                            Ensure your office name and office location to enchance
+                            account to post the job.
+                        </div>
+                        @isset($posersData)
+                        <form action="/profile/updateoffice" method="POST">
+                            @csrf
+                            <span class="title-item">Office Name</span><br>
+                            <input type="text" name="office_name" value="{{ $posersData->userOfficeName }}"
+                                required><br>
+                            <span class="title-item">Office Address</span><br>
+                            <input type="text" name="office_add" value="{{ $posersData->userOfficeAddress }}" required>
+                            <p><button class="cf" type="submit">save</button></p>
+                        </form>
+                        @else
+                        <form action="/profile/updateoffice" method="POST">
+                            @csrf
+                            <span class="title-item">Office Name</span><br>
+                            <input type="text" name="office_name" value="" required><br>
+                            <span class="title-item">Office Address</span><br>
+                            <input type="text" name="office_add" value="" required>
+                            <p><button class="cf" type="submit">save</button></p>
+                        </form>
+                        @endisset
+                    </div>
+
+                    <!-- Logout -->
+                    <div class="content-item">
+                        <div class="title">
+                            <h1>Logout</h1>
+                            Ensure your account is using a long, random password to stay secure.
+                        </div>
+                        <form class="logout" action="/profile/logout" method="GET">
+                            @csrf
+                            <button id="bt-logout" type="submit">Logout</button>
+                        </form>
+                    </div>
+
+                </div>
             </div>
+
+        </div>
         </div>
         </div>
     </body>
