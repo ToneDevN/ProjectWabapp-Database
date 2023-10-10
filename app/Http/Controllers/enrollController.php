@@ -126,10 +126,10 @@ class enrollController extends Controller
             $resumeFile = session('resumeFile');
 
             // Store the file in the public/resume directory using public_path()
-            $resumeFilePath = public_path('resume/' . $resumeFileName);
+            $resumeFilePath = public_path('/resume/' . $resumeFileName);
             file_put_contents($resumeFilePath, $resumeFile);
 
-                $response->resume = 'public/resume/' . $resumeFileName;
+                $response->resume = '/resume/' . $resumeFileName;
                 $response->save();
 
                 // Store the question ID and answer in the responses array
