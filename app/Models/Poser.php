@@ -25,6 +25,10 @@ class Poser extends Model
 
     protected $table = 'posers';
 
-
+    protected $fillable = [
+        'idUser',
+        'userOfficeName',
+        'userOfficeAddress',
+    ];
 
 }

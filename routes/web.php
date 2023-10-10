@@ -46,7 +46,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/logout', [ProfileController::class, 'logout'])->name('profile.logout');
     Route::post('/profiles/passwordupdate', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::post('/profiles/update-categories', [ProfileController::class, 'updateCategories'])->name('update.tag');
+    Route::post('profiles/save-checkbox', [ProfileController::class,'saveCheckbox'])->name('save.checkbox');
+    Route::delete('profiles/delete-checkbox', [ProfileController::class,'deleteCheckbox'])->name('deletetag');
+
     Route::get('noti/{name}/{job}', [notificationController::class, 'getresume'])->name('noti.re');
+
+
+    Route::get('/add-tag/{tagId}', [ProfileController::class,'addTag'])->name('add-tag');
+
+    // Route to remove a tag
+    Route::get('/remove-tag/{tagId}', [ProfileController::class,'removeTag'])->name('remove-tag');
+
 });
 // User
 Route::middleware(['auth', 'user-access:user'])->group(function () {
@@ -55,8 +65,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('ansQuestion', [enrollController::class, 'ansQuestion'])->name('ansQuestion'); //this route is for answer question and store data like email tel. resume
     Route::post('summarizeData', [enrollController::class, 'sumarizeData'])->name('summarize');
     Route::post('submit-response', [enrollController::class, 'submitResponse'])->name('submit_summary');  //this route is for answer question and store data like email tel. resume
-
-    //this route is for answer question and store data like email tel. resume
+   
 });
 
 // Poser
