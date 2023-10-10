@@ -75,7 +75,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/searchUser', [AdminController::class, 'searchUser'])->name('searchUser');
     Route::get('/admin/delete/{idUser}', [AdminController::class, 'delete'])->name('delete');
     Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
-    Route::get('admin/{text}', [AdminController::class, 'admint'])->name('adminUser');
+    Route::get('admin/{text}', [AdminController::class, 'admint'])->name('admin.t');
+    Route::get('adminde/{id}', [AdminController::class, 'detail'])->name('admin.detail');
+    Route::get('deletepost/{id}', [AdminController::class,"deletePost"])->name("post.delete");
+
 
     // Edit Tag Form
     Route::get('/admin/category/editTag/{idTag}', [HomeController::class, 'editTagForm'])->name('admin.category.editTagForm');

@@ -26,6 +26,9 @@ class JobInfo extends Model
     public function Poser(){
         return $this->belongsTo(Poser::class, 'idUser');
     }
+    public function User(){
+        return $this->belongsTo(Poser::class, 'idUser');
+    }
 
     public function favorites() {
         return $this->hasMany(favorite::class, 'idJobInfo');
