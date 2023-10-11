@@ -133,7 +133,7 @@
 
                         </form>
                         <!-- รูปภาพ -->
-                        <img class="rounded-full" src="http://127.0.0.1:8000/../profile/{{$image}}" alt="Profile Image"
+                        <img class="rounded-full" src="{{ asset('profile/' . auth()->user()->idUser . '.jpg') }}" alt="Profile Image"
                             id="ProfileIcon">
                     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class Navigation extends Component
@@ -23,6 +24,7 @@ class Navigation extends Component
      */
     public function render()
     {
-        return view('components.navigation');
+        $image = User::where('idUser', auth()->user()->idUser)->first();
+        return view('components.navigation',['image'=>$image]);
     }
 }

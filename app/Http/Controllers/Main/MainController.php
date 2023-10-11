@@ -7,6 +7,7 @@ use App\Models\JobInfo;
 use App\Models\Poser;
 use App\Models\Question;
 use App\View\Components\main;
+use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -19,15 +20,23 @@ class MainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $job = JobInfo::all();
-        return view('main.index',['job'=>$job]);
-
+    {
+        if (auth()->user()->type == 'user') {
+            $job = JobInfo::all();
+            return view('main.index', ['job' => $job]);
+        } else if (auth()->user()->type == 'poser') {
+            $job = JobInfo::where('idUser',auth()->user()->idUser)->get();
+            return view('main.index', ['job' => $job]);
+        }
     }
 
 
-    public function detail(Request $request){
+    public function detail(Request $request)
+    {
         $poser = JobInfo::where('idJobInfo', $request->id)->first();
         $job = JobInfo::where('idUser', '=', $poser->idUser)->first();
+        $posersData = Poser::where('idUser', auth()->user()->idUser)->first();
+        $question = Question::where('idJobInfo', $request->id)->get();
         abort_if(!isset($job), 404);
 
         // Check if the combination of idQuestion and idJobInfo exists
@@ -39,6 +48,8 @@ class MainController extends Controller
         return view('main.detail', [
             'job' => $poser,
             'idjob' => $request->id,
+            'posersData'  => $posersData,
+            'question' => $question,
             'applicationExists' => $applicationExists, // Pass the result to the view
         ]);
     }

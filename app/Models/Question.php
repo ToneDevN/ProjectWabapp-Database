@@ -22,6 +22,6 @@ class Question extends Model
     }
 
     public function response_has_question(){
-        return $this->hasMany(response_has_question::class);
+        return $this->hasMany(response_has_question::class, 'idQuestion');
     }
 }

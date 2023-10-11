@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-semibold text-white mb-5">Saved Job</h1>
         @isset($favorites)
             @foreach ($favorites as $favorite)
-            <form method="GET" action="{{ route('user.detail', ['id' => $favorite->idJobInfo ]) }}">
+            <form method="GET" action="{{ route('user.detail', ['id' => $favorite->idJobInfo ]) }}" class="w-full">
                 @csrf
                 <button class="bg-slate-200 rounded-lg mb-4 p-4 w-full  grid content-center hover:bg-slate-300">
                     <div class="flex gap-4">

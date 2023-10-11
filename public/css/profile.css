@@ -217,7 +217,7 @@ span .checkbox-text{
     border-radius: 5px;
     color: #FFFFFF;
 }
-li{
+.tag-list li{
     margin-bottom: 20px;
     display: inline-flex;
     padding: 20px;

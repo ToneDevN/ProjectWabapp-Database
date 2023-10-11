@@ -78,7 +78,7 @@ public function index()
     // Fetch the user's selected tag IDs
     $selectedTagIds = user_has_tag::where('idUser', $user)->pluck('idTag')->toArray();
 
-    return view('profile.profile', compact('posersData', 'allTags', 'selectedTagIds'))
+    return view('profile.profile', compact('posersData', 'allTags', 'selectedTagIds','user'))
         ->with('old_password', $old_password)
         ->with('image', $image->image);
 }
@@ -151,12 +151,12 @@ public function upload(Request $request)
 {
     $user = auth()->user();
     $image = $request->file('profile_image');
-    $originalName = $image->getClientOriginalName();
+    $originalName = auth()->user()->idUser;
     session(['image' => $originalName]);
 
     $imgFile = $request->file('profile_image')->get();
 
-    $imageFilePath = public_path('/profile/' . $originalName);
+    $imageFilePath = public_path('/profile/' . $originalName.'.jpg');
     file_put_contents($imageFilePath, $imgFile);
 
     if ($image) {

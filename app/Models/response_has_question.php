@@ -11,5 +11,15 @@ class response_has_question extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public $incrementing = true;
+
+    public function Questions(){
+        return $this->belongsTo(Question::class, 'idQuestion');
+    }
+    public function ResponseJob(){
+        return $this->belongsTo(responseJobInfo::class, 'idResponse');
+    }
+
+
      
 }

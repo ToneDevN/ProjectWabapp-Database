@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{
-    JobInfo,
+use App\Models\{JobInfo,
     Question,
     Question_has_jobInfo,
+    response_has_question,
     responseJobInfo,
     User,
 };
@@ -15,18 +15,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class enrollController extends Controller
-{
-    public $idjob;
-    public function enroll(Request $request)
-    {
+{ public $idjob;
+    public function enroll(Request $request){
         $user = auth()->user();
         $this->idjob = (int) $request->input('job_id');
     
         session(['idJobInfo'=>$this->idjob]);
 
-        return view('enroll.enrollwork', ['user' => $user, 'idJobInfo' => $this->idjob]);
+        return view('enroll.enrollwork',['user'=>$user,'idJobInfo'=>$this->idjob]);
     }
-
     public function editenroll(Request $request)
     {
         $user = auth()->user();
@@ -69,7 +66,7 @@ class enrollController extends Controller
 
                 $idjob = session('idjob');
                 // Make a unique filename to detect who and what work is being submitted
-                $resumeFileName = auth()->user()->idUser . '_' . $idjob . '_' . $originalFileName;
+                $resumeFileName = auth()->user()->idUser . '' . $idjob . '' . $originalFileName;
                 session(['resumeFileName' => $resumeFileName]);
 
                 // Store the file content in the session
@@ -100,12 +97,10 @@ class enrollController extends Controller
             ->where('idJobInfo', $idjob)
             ->exists();
 
-        return view('main.detail', [
-            'job' => $poser,
-            'idjob' => $idjob,
-            'applicationExists' => $applicationExists, // Pass the result to the view
-        ]);
+        return redirect()->route('user.detail',['id'=>$idjob]);
     }
+
+
 
 
     public function ansQuestion(Request $request)
@@ -120,11 +115,13 @@ class enrollController extends Controller
         // Retrieve the authenticated user's ID
         $userId = auth()->id();
 
+        $jobId = session('idJobInfo');
+        
         // Get the original filename
         $originalFileName = $request->file('resume')->getClientOriginalName();
 
         // Make a unique filename to detect who and what work is being submitted
-        $filename = $userId . '' . $request->input('job_id') . '' . $originalFileName;
+        $filename = $userId . '' . $jobId . '' . $originalFileName;
 
         // Store the email and phone in the session
         session(['email' => $request->input('email')]);
@@ -137,9 +134,6 @@ class enrollController extends Controller
         session(['resumeFile' => $request->file('resume')->get()]);
 
         session(['jobId'=>$jobId]);
-
-        // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
 
         // Fetch the actual question data using these IDs
         $questionsData = Question::where('idJobInfo', $jobId)->get();
@@ -161,9 +155,9 @@ class enrollController extends Controller
 
         // Retrieve the job ID from the session
         $jobId = session('jobId');
-        $idjob = session('idJobInfo');
+
         // Fetch question IDs related to the specified job
-        $questionIds = Question_has_jobinfo::where('idJobinfo', $jobId)->pluck('idQuestion');
+
 
         // Fetch the actual question data using these IDs
         $questionsData = Question::where('idJobInfo', $jobId)->get();
@@ -178,7 +172,7 @@ class enrollController extends Controller
             'resumeFileName' => $resumeFileName,
             'questionsData' => $questionsData,
             'selectedOptions' => $selectedOptions, // Pass selected options to the view
-            'jobId' => $idjob,
+            'jobId' => $jobId,
         ]);
     }
 
@@ -191,31 +185,36 @@ class enrollController extends Controller
         $responses = [];
 
         $selectedOptions = session('selected_options');
-        $idjob = session('idJobInfo');
 
         // Check if 'selected_option' exists in the request and is an array
         if (isset($selectedOptions) && is_array($selectedOptions)) {
             foreach ($selectedOptions as $questionId => $answer) {
+
+                $idJobInfo = $request->session()->get('jobId');
+
                 $response = new responseJobInfo();
                 $response->idUser = $userId;
-                $response->idQuestion = $questionId;
-                $response->idJobInfo = $idjob;
+                $response->idJobInfo = $idJobInfo;
                 $response->answer = $answer;
 
-                // Get the filename and file content from the session
-                $resumeFileName = session('resumeFileName');
-                $resumeFile = session('resumeFile');
+               // Get the filename and file content from the session
+            $resumeFileName = session('resumeFileName');
+            $resumeFile = session('resumeFile');
 
-                // Store the file in the public/resume directory using public_path()
-                $resumeFilePath = public_path('/resume/' . $resumeFileName);
-                file_put_contents($resumeFilePath, $resumeFile);
+            // Store the file in the public/resume directory using public_path()
+            $resumeFilePath = public_path('/resume/' . $resumeFileName);
+            file_put_contents($resumeFilePath, $resumeFile);
 
                 $response->resume = '/resume/' . $resumeFileName;
                 $response->save();
 
+                $idResponse = responseJobInfo::where('idUser', $userId)->where('idJobInfo', $idJobInfo)->first();
+            
+              
+
                 // Store the question ID and answer in the responses array
                 $responses[] = [
-                    'idResponse' => $response->id, // Assuming 'id' is the primary key of response_job_infos
+                    'idResponse' => $idResponse->idResponse, // Assuming 'id' is the primary key of response_job_infos
                     'idQuestion' => $questionId,
                     'answer' => $answer,
                 ];

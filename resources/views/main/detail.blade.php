@@ -39,13 +39,14 @@
                         <p class="self-center font-medium text-lg ml-6">{{ $job->jobType }}</p>
                     </div>
                     <div class="flex gap-4 w-full my-6">
-                        @user                        @if (!$applicationExists)
-                            <form action="{{ route('enroll') }}" method='post' class="h-12 w-1/2">
-                                @csrf
-                                <input type="hidden" name="job_id" value="{{ $idjob }}">
-                                <!-- Check if the combination does not exist -->
-                                <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
-                                            class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
+                        @user
+                            @if (!$applicationExists)
+                                <form action="{{ route('enroll') }}" method='post' class="h-12 w-1/2">
+                                    @csrf
+                                    <input type="hidden" name="job_id" value="{{ $idjob }}">
+                                    <!-- Check if the combination does not exist -->
+                                    <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
+                                        class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
                                         Apply
                                     </button>
                                 </form>
@@ -55,11 +56,11 @@
                                     @csrf
                                     <input type="hidden" name="job_id" value="{{ $idjob }}">
                                     <!-- Check if the combination does not exist -->
-                                        <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
-                                                class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
-                                            Edit Application
-                                        </button>
-                                    </form>
+                                    <button type="submit" name="idjob" value="{{ $job->idJobInfo }}"
+                                        class="colors-blue rounded-md h-12 w-full text-white text-lg font-semibold">
+                                        Edit Application
+                                    </button>
+                                </form>
                             @endif
 
 
@@ -119,10 +120,10 @@
             <div class="bg-white p-6 rounded-md shadow-lg ">
                 <h2 class="text-2xl font-semibold mb-4">Edit job information</h2>
 
-                <form action="{{ route('poser.editJob')}}" method="POST" class="flex flex-col my-4 w-96">
+                <form action="{{ route('poser.editJob') }}" method="POST" class="flex flex-col my-4 w-96">
                     @csrf
                     @isset($posersData)
-                    <input type="hidden" name="idJobinfo" value="{{$job->idJobInfo}}">
+                        <input type="hidden" name="idJobinfo" value="{{ $job->idJobInfo }}">
                         <p class="indicate">*Indicates required</p>
 
                         <label for="company">
@@ -140,7 +141,8 @@
                         <label for="nameJob">
                             <p class="input_distance">Job Title:</p>
                         </label>
-                        <input type="text" name="nameJob" id="namejob" class="input-style w-96" value="{{$job->nameJob}}" required>
+                        <input type="text" name="nameJob" id="namejob" class="input-style w-96"
+                            value="{{ $job->nameJob }}" required>
                         <label for="workplace_type">
                             <p class="input_distance">Workplace Type:</p>
                         </label>
@@ -162,17 +164,20 @@
                         <label for="description">
                             <p class="input_distance">Job Description:</p>
                         </label>
-                        <input type="text" name="description" id="description" class="input-style w-96" value="{{$job->description}}" required>
+                        <input type="text" name="description" id="description" class="input-style w-96"
+                            value="{{ $job->discription }}" required>
 
                         <h2 class="text-2xl font-semibold my-4">Question</h2>
                         @foreach ($question as $question)
-                            <input type="text" name="questions[]"  class="input-style w-96"
+                            <input type="text" name="questions[]" class="input-style w-96"
                                 value="{{ $question->Question }}" required>
-                                <input type="hidden" name="idQuestion[]" value="{{$question->idQuestion}}">
-                                <span>
-                                    <input type="radio" name="answers[]" value="1" {{ $question->answer == '1' ? 'checked' : '' }}> Yes
-                                    <input type="radio" name="answers[]" value="0" {{ $question->answer == '0' ? 'checked' : '' }}> No
-                                </span>
+                            <input type="hidden" name="idQuestion[]" value="{{ $question->idQuestion }}">
+                            <span>
+                                <input type="radio" name="answers[]" value="1"
+                                    {{ $question->answer == '1' ? 'checked' : '' }}> Yes
+                                <input type="radio" name="answers[]" value="0"
+                                    {{ $question->answer == '0' ? 'checked' : '' }}> No
+                            </span>
                         @endforeach
                     @endisset
                     <div class="flex justify-end">
@@ -195,10 +200,11 @@
         <div class="flex place-content-center">
             <div class="bg-white p-6 rounded-md shadow-lg">
                 <h2 class="text-2xl font-semibold mb-4">Are you sure to delete job?</h2>
-
-                <form action="{{ route('poser.deleteJob')}}" method="POST" class="flex flex-col my-4">
+@isset($job)
+                <form action="{{ route('poser.deleteJob') }}" method="POST" class="flex flex-col my-4">
                     @csrf
-                    <input type="hidden" name="idJobinfo" value="{{$job->idJobInfo}}">
+
+                    <input type="hidden" name="idJobinfo" value="{{ $job->idJobInfo }}">
                     <div class="flex justify-end">
                         <button id="closeDelete" type="button"
                             class="mt-4 mx-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
@@ -210,6 +216,7 @@
                         </button>
                     </div>
                 </form>
+                @endisset
             </div>
         </div>
     </div>
